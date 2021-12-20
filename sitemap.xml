@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bowonqin.github.io/posts/mysql5.html</loc>
+    
+    <lastmod>2021-12-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bowonqin.github.io/posts/mysql4.html</loc>
     
     <lastmod>2021-12-20</lastmod>
@@ -17,6 +24,13 @@
   
   <url>
     <loc>https://bowonqin.github.io/posts/mysql2.html</loc>
+    
+    <lastmod>2021-12-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bowonqin.github.io/posts/18293.html</loc>
     
     <lastmod>2021-12-20</lastmod>
     
@@ -45,13 +59,6 @@
   
   <url>
     <loc>https://bowonqin.github.io/posts/1111222.html</loc>
-    
-    <lastmod>2021-12-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bowonqin.github.io/posts/18293.html</loc>
     
     <lastmod>2021-12-20</lastmod>
     
@@ -202,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://bowonqin.github.io/categories/Mysql%E7%AF%87/</loc>
+    <loc>https://bowonqin.github.io/categories/Mysql%E5%9F%BA%E7%A1%80%E7%AF%87/</loc>
     <lastmod>2021-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

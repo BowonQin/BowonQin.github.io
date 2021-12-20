@@ -561,15 +561,19 @@ ORDER BY hire_date DESC ;<span aria-hidden="true" class="line-numbers-rows"><spa
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT employee_id, last_name, salary*12 annsal
 FROM   employees
 ORDER BY annsal;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+ <img src="/posts/mysql5/1554974853194.png" class="">
+ <!-- ![1554974853194](images/1554974853194.png) -->
+ <img src="/posts/mysql5/1554974858252.png" class="">
+<!-- ![1554974858252](images/1554974858252.png) -->
 
-<p> <img src="/posts/1554974853194.png" alt="1554974853194"></p>
-<p><img src="/posts/1554974858252.png" alt="1554974858252"></p>
 <h3 id="1-3-多列排序"><a href="#1-3-多列排序" class="headerlink" title="1.3 多列排序"></a>1.3 多列排序</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT last_name, department_id, salary
 FROM   employees
 ORDER BY department_id, salary DESC;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+ <img src="/posts/mysql5/1554974901572.png" class="">
+<!-- ![1554974901572](images/1554974901572.png) -->
+ <img src="/posts/mysql5/1554974907498.png" class="">
+<!-- ![1554974907498](images/1554974907498.png) -->
 
-<p><img src="/posts/1554974901572.png" alt="1554974901572"></p>
-<p><img src="/posts/1554974907498.png" alt="1554974907498"></p>
 <ul>
 <li>可以使用不在SELECT列表中的列排序。</li>
 <li>在对多列进行排序的时候，首先排序的第一列必须有相同的列值，才会对第二列进行排序。如果第一列数据中所有值都是唯一的，将不再对第二列进行排序。</li>

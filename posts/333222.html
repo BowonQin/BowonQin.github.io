@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
 </head>
 
 
@@ -495,21 +495,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-19
+                    2021-12-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    7 分
                 </div>
                 
 
@@ -605,13 +605,18 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
 <li><p> 第二次发起查询用户id为1的用户信息，先去找缓存中是否有id为1的用户信息，缓存中有，直 接从缓存中获取用户信息。</p>
 </li>
 </ul>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211219172617546.png" alt="image-20211219172617546"></p>
+<img src="/posts/333222/image-20211219172617546.png" class="">
+
 <hr>
 <h3 id="一级缓存原理探究和源码分析"><a href="#一级缓存原理探究和源码分析" class="headerlink" title="一级缓存原理探究和源码分析"></a>一级缓存原理探究和源码分析</h3><p>一级缓存到底是什么？一级缓存什么时候被创建、一级缓存的工作流程是怎样的？相信你现在应该会有这几个疑问，那么我们本节就来研究一下一级缓存的本质。</p>
 <p>大家可以这样想，上面我们一直提到一级缓存，那么提到一级缓存就绕不开SqlSession,所以索性我们就直接从SqlSession，看看有没有创建缓存或者与缓存有关的属性或者方法。</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211219205515080.png" alt="image-20211219205515080"></p>
+<img src="/posts/333222/image-20211219205515080.png" class="">
+
+
 <p>调研了一圈，发现上述所有方法中，好像只有clearCache()和缓存沾点关系，那么就直接从这个方 法入手吧，分析源码时，我们要看它(此类)是谁，它的父类和子类分别又是谁，对如上关系了解了，你才 会对这个类有更深的认识，分析了一圈，你可能会得到如下这个流程图。</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211219210206407.png" alt="image-20211219210206407"></p>
+<img src="/posts/333222/image-20211219210206407.png" class="">
+
+
 <p>再深入分析，流程走到<strong>Perpetualcache</strong>中的clear()方法之后，会调用其**cache.clear()**方法，那 么这个cache是什么东西呢？点进去发现，cache其实就是private Map cache = new HashMap()；也就是一个Map，所以说cache.clear()其实就是map.clear()，也就是说缓存其实就是本地存放的一个map对象，每一个SqISession都会存放一个map对象的引用，那么这个cache是何 时创建的呢？</p>
 <p>你觉得最有可能创建缓存的地方是哪里呢？我觉得是<strong>Executor</strong>，为什么这么认为？因为Executor是 执行器，用来执行SQL请求，而且清除缓存的方法也在Executor中执行，所以很可能缓存的创建也很 有可能在Executor中，看了一圈发现Executor中有一个createCacheKey方法，这个方法很像是创 建缓存的方法啊，跟进去看看，你发现createCacheKey方法是由BaseExecutor执行的，代码如下</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">CacheKey</span> <span class="token function">createCacheKey</span><span class="token punctuation">(</span><span class="token class-name">MappedStatement</span> ms<span class="token punctuation">,</span> <span class="token class-name">Object</span> parameterObject<span class="token punctuation">,</span> <span class="token class-name">RowBounds</span> rowBounds<span class="token punctuation">,</span> <span class="token class-name">BoundSql</span> boundSql<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -678,7 +683,9 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
 
 <hr>
 <h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><p>二级缓存的原理和一级缓存原理一样，第一次查询，会将数据放入缓存中，然后第二次查询则会直接去缓存中取。但是一级缓存是基于sqlSession的，而二级缓存是基于mapper文件的namespace的，也就是说多个sqlSession可以共享一个mapper中的二级缓存区域，并且如果两个mapper的namespace 相同，即使是两个mapper,那么这两个mapper中执行sql查询到的数据也将存在相同的二级缓存区域 中。</p>
-<p>​    <img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211219214448937.png" alt="image-20211219214448937"></p>
+<img src="/posts/333222/image-20211219214448937.png" class="">
+
+
 <p>​        </p>
 <p>如何使用二级缓存</p>
 <p>和一级缓存默认开启不一样，二级缓存需要我们手动开启首先在全局配置文件sqlMapConfig.xml文件中加入如下代码:</p>
@@ -693,28 +700,17 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
 <p>或者在UserMapper接口中添加注解</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@CacheNamespace</span><span class="token punctuation">(</span>implementation <span class="token operator">=</span> <span class="token class-name">PerpetualCache</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>我们可以看到mapper.xml文件中就这么一个空标签，其实这里可以配置,PerpetualCache这个类是mybatis默认实现缓存功能的类。我们不写type就使用mybatis默认的缓存，也可以去实现Cache接口来自定义缓存。</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211219214822686.png" alt="image-20211219214822686"></p>
-<p>其中，PerpetualCache是MyBatis默认实现的缓存类，Cache是自定义缓存必须实现的缓存接口。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PerpetualCache</span> <span class="token keyword">implements</span> <span class="token class-name">Cache</span> <span class="token punctuation">{</span> 
+<p>我们可以看到mapper.xml文件中就这么一个空标签，其实这里可以配置,PerpetualCache这个类是mybatis默认实现缓存功能的类。我们不写type就使用mybatis默认的缓存，也可以去实现Cache接口来自定义缓存。<br><img src="/posts/333222/image-20211219214822686.png" class="" title="%</p> <p>其中，PerpetualCache是MyBatis默认实现的缓存类，Cache是自定义缓存必须实现的缓存接口。</p> <pre class=" line-numbers="" language-java"="" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PerpetualCache</span> <span class="token keyword">implements</span> <span class="token class-name">Cache</span> <span class="token punctuation">{</span> 
     <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> id<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> cache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMapC</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token class-name">PerpetualCache</span><span class="token punctuation">(</span><span class="token class-name">String</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
         <span class="token keyword">this</span><span class="token punctuation">.</span>id <span class="token operator">=</span> id<span class="token punctuation">;</span> 
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>我们可以看到二级缓存底层还是HashMap结构</p>
-<p>开启了二级缓存后，还需要将要缓存的pojo实现Serializable接口，为了将缓存数据取出执行反序列化操作，因为二级缓存数据存储介质多种多样，不一定只存在内存中，有可能存在硬盘中，如果我们要再取 这个缓存的话，就需要反序列化了。所以mybatis中的pojo都去实现Serializable接口。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code> &lt;p&gt;我们可以看到二级缓存底层还是HashMap结构&lt;/p&gt; &lt;p&gt;开启了二级缓存后，还需要将要缓存的pojo实现Serializable接口，为了将缓存数据取出执行反序列化操作，因为二级缓存数据存储介质多种多样，不一定只存在内存中，有可能存在硬盘中，如果我们要再取 这个缓存的话，就需要反序列化了。所以mybatis中的pojo都去实现Serializable接口。&lt;/p&gt; </p><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> birthday<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p>测试<br>一、测试二级缓存和sqlSession无关</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> &lt;hr&gt; &lt;p&gt;测试&lt;br&gt;一、测试二级缓存和sqlSession无关&lt;/p&gt; <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">secondLevelCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token class-name">SqlSession</span> sqlSession1 <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">SqlSession</span> sqlSession2 <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -731,11 +727,7 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
     <span class="token class-name">User</span> user2 <span class="token operator">=</span> mapper2<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user1 <span class="token operator">==</span> user2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//false 二级缓存的是数据不是对象</span>
 
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>可以看出上面两个不同的sqlSession,第一个关闭了，第二次查询依然不发出sql查询语句</p>
-<p>二、测试执行commit()操作，二级缓存数据清空</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> &lt;p&gt;可以看出上面两个不同的sqlSession,第一个关闭了，第二次查询依然不发出sql查询语句&lt;/p&gt; &lt;p&gt;二、测试执行commit()操作，二级缓存数据清空&lt;/p&gt; <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">secondLevelCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token class-name">SqlSession</span> sqlSession1 <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">SqlSession</span> sqlSession2 <span class="token operator">=</span> sqlSessionFactory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -760,10 +752,7 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
     <span class="token comment">//第二次查询，由于上次更新操作，缓存数据已经清空(防止数据脏读)，这里必须再次发出sql语句</span>
     <span class="token class-name">User</span> user2 <span class="token operator">=</span> mapper2<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user1 <span class="token operator">==</span> user2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>控制台情况</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">Cache Hit Ratio [com.qxd.mapper.IUserMapper]: 0.0
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> &lt;p&gt;控制台情况&lt;/p&gt; <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">Cache Hit Ratio [com.qxd.mapper.IUserMapper]: 0.0
 Opening JDBC Connection
 Created connection 461591680.
 Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@1b835480]
@@ -791,23 +780,11 @@ Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6
 &lt;==    Columns: id, username, password, birthday
 &lt;==        Row: 1, lisi, 123, 2020-1-1
 &lt;==      Total: 1
-false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>useCache和flushCache</strong></p>
-<p>mybatis中还可以配置userCache和flushCache等配置项，userCache是用来设置是否禁用二级缓 存的，在statement中设置useCache=false可以禁用当前select语句的二级缓存，即每次查询都会发出 sql去查询，默认情况是true,即该sql使用二级缓存</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectUserByUserId<span class="token punctuation">"</span></span> <span class="token attr-name">useCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.lagou.pojo.User<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> 				select * from user where id=#{id}
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>这种情况是针对每次查询都需要最新的数据sql,要设置成useCache=false，禁用二级缓存，直接从数据库中获取。在mapper的同一个namespace中，如果有其它insert、update, delete操作数据后需要刷新缓 存，如果不执行刷新缓存会出现脏读。</p>
-<p>设置statement配置中的flushCache=”true”属性，默认情况下为true,即刷新缓存，如果改成false则不会刷新。使用缓存时如果手动修改数据库表中的查询数据会出现脏读。</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectUserByUserId<span class="token punctuation">"</span></span> <span class="token attr-name">flushCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">useCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
+false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> &lt;hr&gt; &lt;p&gt;&lt;strong&gt;useCache和flushCache&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;mybatis中还可以配置userCache和flushCache等配置项，userCache是用来设置是否禁用二级缓 存的，在statement中设置useCache=false可以禁用当前select语句的二级缓存，即每次查询都会发出 sql去查询，默认情况是true,即该sql使用二级缓存&lt;/p&gt; <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectUserByUserId<span class="token punctuation">"</span></span> <span class="token attr-name">useCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.lagou.pojo.User<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> 				select * from user where id=#{id}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre> &lt;p&gt;这种情况是针对每次查询都需要最新的数据sql,要设置成useCache=false，禁用二级缓存，直接从数据库中获取。在mapper的同一个namespace中，如果有其它insert、update, delete操作数据后需要刷新缓 存，如果不执行刷新缓存会出现脏读。&lt;/p&gt; &lt;p&gt;设置statement配置中的flushCache=”true”属性，默认情况下为true,即刷新缓存，如果改成false则不会刷新。使用缓存时如果手动修改数据库表中的查询数据会出现脏读。&lt;/p&gt; <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectUserByUserId<span class="token punctuation">"</span></span> <span class="token attr-name">flushCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">useCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
         <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.lagou.pojo.User<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> 
     select * from user where id=#{id} 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>一般下执行完commit操作都需要刷新缓存，flushCache=true表示刷新缓存，这样可以避免数据库脏读。所以我们不用设置，默认即可。</p>
-
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre> &lt;p&gt;一般下执行完commit操作都需要刷新缓存，flushCache=true表示刷新缓存，这样可以避免数据库脏读。所以我们不用设置，默认即可。&lt;/p&gt;"&gt;<p></p>
                 
             </div>
             <hr/>
@@ -1196,7 +1173,7 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.7k</span>&nbsp;字
+                class="white-color">14.7k</span>&nbsp;字
             
             
             

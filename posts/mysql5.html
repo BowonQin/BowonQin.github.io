@@ -609,7 +609,7 @@ SELECT * FROM 表名 LIMIT 20,10;<span aria-hidden="true" class="line-numbers-ro
 <p>MySQL 8.0中可以使用“LIMIT 3 OFFSET 4”，意思是获取从第5条记录开始后面的3条记录，和“LIMIT 4,3;”返回的结果相同。</p>
 </blockquote>
 <ul>
-<li>分页显式公式*<em>：（当前页数-1）</em>每页条数，每页条数**</li>
+<li>分页显式公式：（当前页数-1）*每页条数，每页条数**</li>
 </ul>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT * FROM table 
 LIMIT(PageNo - 1)*PageSize,PageSize;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>

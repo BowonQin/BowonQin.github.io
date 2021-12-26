@@ -1,3 +1,6 @@
+https://bowonqin.github.io/posts/jdk8.html
+https://bowonqin.github.io/posts/mysql11.html
+https://bowonqin.github.io/posts/mysql10.html
 https://bowonqin.github.io/posts/122s22.html
 https://bowonqin.github.io/posts/3da77555.html
 https://bowonqin.github.io/posts/mysql9.html

@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>java集合专题</title>
+      <link href="posts/java-ji-he.html"/>
+      <url>posts/java-ji-he.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="java集合专题"><a href="#java集合专题" class="headerlink" title="java集合专题"></a>java集合专题</h1><p>韩顺平java集合听课笔记<br>BILIBILI听课网址：[韩顺平java集合听课网址](<a href="https://www.bilibili.com/video/BV1YA411T76k?from=search&amp;seid=8404539016669705892&amp;spm_id_from=333.337.0.0">[韩顺平讲Java]Java集合专题 -ArrayList HashMap HashSet List Map TreeMap TreeSet等_哔哩哔哩_bilibili</a>)</p><h2 id="集合的理解和好处"><a href="#集合的理解和好处" class="headerlink" title="集合的理解和好处"></a>集合的理解和好处</h2><p>数组的不足之处</p><ul><li><p>长度开始时必须指定，一旦指定，无法更改</p></li><li><p>保存的必须为同一类型的元素</p></li><li><p>数组增加/删除元素比较麻烦</p><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 数组扩容</span><span class="token annotation punctuation">@Test</span><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token class-name">Person</span><span class="token punctuation">[</span><span class="token punctuation">]</span> people <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    people<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 增加新的Person对象</span>    <span class="token class-name">Person</span><span class="token punctuation">[</span><span class="token punctuation">]</span> people1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">[</span>people<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> people<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        people1<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> people<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    people1<span class="token punctuation">[</span>people1<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 添加新的对象</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><p>集合的好处</p><ul><li><p>动态保存任意多个对象，使用比较方便</p></li><li><p>提供了一系列方便操作对象的方法：add、remove、set、get等</p></li><li><p>使用集合添加删除元素比较简单明了</p></li></ul><h2 id="集合框架体系（重要，需要背下来）"><a href="#集合框架体系（重要，需要背下来）" class="headerlink" title="集合框架体系（重要，需要背下来）"></a>集合框架体系（重要，需要背下来）</h2><p>主要分为两大类</p><ul><li>Collection接口</li></ul><img src="/posts/java-ji-he/1.png" class=""><ul><li>Map接口</li></ul><img src="/posts/java-ji-he/2.png" class="">]]></content>
+      
+      
+      <categories>
+          
+          <category> java基础 </category>
+          
+          <category> java集合 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>jdk8特性</title>
       <link href="posts/jdk8.html"/>
       <url>posts/jdk8.html</url>

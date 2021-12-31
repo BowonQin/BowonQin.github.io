@@ -1,4 +1,8 @@
-https://bowonqin.github.io/posts/java-ji-he.html
+https://bowonqin.github.io/posts/asdas.html
+https://bowonqin.github.io/posts/bad915d6.html
+https://bowonqin.github.io/posts/b2440e5a.html
+https://bowonqin.github.io/posts/192dfcf1.html
+https://bowonqin.github.io/posts/java-ji-he-arraylist.html
 https://bowonqin.github.io/posts/jdk8.html
 https://bowonqin.github.io/posts/mysql11.html
 https://bowonqin.github.io/posts/mysql10.html

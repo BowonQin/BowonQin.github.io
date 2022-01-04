@@ -4,6 +4,79 @@
   
     
     <entry>
+      <title>git</title>
+      <link href="posts/518e617c.html"/>
+      <url>posts/518e617c.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>参考黑马程序员Git教程</p><h3 id="Idea中使用Git"><a href="#Idea中使用Git" class="headerlink" title="Idea中使用Git"></a>Idea中使用Git</h3><h4 id="在Idea中配置Git"><a href="#在Idea中配置Git" class="headerlink" title="在Idea中配置Git"></a>在Idea中配置Git</h4><p>安装好IntelliJ IDEA后，如果Git安装在默认路径下，那么idea会自动找到git的位置，如果更改了Git的安装位置则需要手动配置下Git的路径。选择File→Settings打开设置窗口，找到Version Control下的git选项：</p><img src="/posts/undefined/1.jpg" class=""><h4 id="在Idea中操作Git"><a href="#在Idea中操作Git" class="headerlink" title="在Idea中操作Git"></a>在Idea中操作Git</h4><p>场景：本地已经有一个项目，但是并不是git项目，我们需要将这个放到码云的仓库里，和其他开发人员继续一起协作开发</p><h5 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h5><img src="/posts/undefined/2.jpg" class=""><img src="/posts/undefined/2.1.jpg" class=""><p>上图中＋号创建分支，按相应步骤即可。</p><h5 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h5><img src="/posts/undefined/3.jpg" class=""><h5 id="设置远程仓库"><a href="#设置远程仓库" class="headerlink" title="设置远程仓库"></a>设置远程仓库</h5><img src="/posts/undefined/4.jpg" class=""><h5 id="提交到本地仓库"><a href="#提交到本地仓库" class="headerlink" title="提交到本地仓库"></a>提交到本地仓库</h5><img src="/posts/undefined/5.jpg" class=""><h5 id="推送到本地仓库"><a href="#推送到本地仓库" class="headerlink" title="推送到本地仓库"></a>推送到本地仓库</h5><img src="/posts/undefined/6.jpg" class=""><h5 id="克隆远程仓库到本地"><a href="#克隆远程仓库到本地" class="headerlink" title="克隆远程仓库到本地"></a>克隆远程仓库到本地</h5><img src="/posts/undefined/7.jpg" class=""><h5 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h5><ul><li><p>常规方式</p><img src="/posts/undefined/8.jpg" class=""></li><li><p>强大方式</p><img src="/posts/undefined/9.jpg" class=""></li></ul><h5 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h5><img src="/posts/undefined/10.jpg" class=""><h5 id="解决冲突（重点）"><a href="#解决冲突（重点）" class="headerlink" title="解决冲突（重点）"></a>解决冲突（重点）</h5><p>如果员工甲和员工乙同时修改了同一份文件并commit和push，此时会发生冲突。</p><p>任何情况下都应该先将别人写的代码pull到本地，分析他人的提交日志，将别人写的代码添加到自己的文件中，然后在commit and push.</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="posts/asdas.html"/>
+      <url>posts/asdas.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="微服务docker启动超时问题"><a href="#微服务docker启动超时问题" class="headerlink" title="微服务docker启动超时问题"></a>微服务docker启动超时问题</h2><p>使用docker运行一个中型的项目，包含40多个微服务及相关数据库的docker。由于docker-compose up 同时启动的服务过多，超过了请求HTTP限制的60s时间仍未全部成功启动起来，所以出现了超时错误：</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ERROR: An HTTP request took too long to complete. Retry with --verbose to obtain debug information.If you encounter this issue regularly because of slow network conditions, consider setting COMPOSE_HTTP_TIMEOUT to a higher value (current value: 60).<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>其中60s是默认的时间。</p><h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p> 把 COMPOSE_HTTP_TIMEOUT 的值调大，并转为环境变量即可。</p><h3 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h3><p> 先进入/etc/profile配置文件，执行命令：</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">vi /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>然后在尾部添加上下面代码：</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">export COMPOSE_HTTP_TIMEOUT=500export DOCKER_CLIENT_TIMEOUT=500<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>接着使/etc/profile配置文件生效，执行命令：</p><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">source /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>最后重新执行命令 docker-compose up 即可。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常见问题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 常见问题 </tag>
+            
+            <tag> docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>spring cloud gateway 自定义全局过滤器不生效</title>
+      <link href="posts/spring-cloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html"/>
+      <url>posts/spring-cloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="spring-cloud-gateway-自定义全局过滤器不生效"><a href="#spring-cloud-gateway-自定义全局过滤器不生效" class="headerlink" title="spring cloud gateway 自定义全局过滤器不生效"></a>spring cloud gateway 自定义全局过滤器不生效</h2><p>springboot的启动类不在包的最外层，导致过滤器的@Component注解不生效，也就是bean没有在spring中实例化。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 常见问题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 常见问题 </tag>
+            
+            <tag> spring cloud </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>idea在debug模式下查看集合内部结构</title>
       <link href="posts/asdas.html"/>
       <url>posts/asdas.html</url>
@@ -31,19 +104,6 @@
     
     
     <entry>
-      <title>Apollo</title>
-      <link href="posts/bad915d6.html"/>
-      <url>posts/bad915d6.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>java集合专题(Set)</title>
       <link href="posts/b2440e5a.html"/>
       <url>posts/b2440e5a.html</url>
@@ -65,19 +125,6 @@
             <tag> java集合 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>NGNIX</title>
-      <link href="posts/192dfcf1.html"/>
-      <url>posts/192dfcf1.html</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-      
       
     </entry>
     

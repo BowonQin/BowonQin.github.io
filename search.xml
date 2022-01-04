@@ -12,6 +12,19 @@
       
       
       
+    </entry>
+    
+    
+    
+    <entry>
+      <title>git</title>
+      <link href="posts/518e617c.html"/>
+      <url>posts/518e617c.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>参考黑马程序员Git教程</p><h3 id="Idea中使用Git"><a href="#Idea中使用Git" class="headerlink" title="Idea中使用Git"></a>Idea中使用Git</h3><h4 id="在Idea中配置Git"><a href="#在Idea中配置Git" class="headerlink" title="在Idea中配置Git"></a>在Idea中配置Git</h4><p>安装好IntelliJ IDEA后，如果Git安装在默认路径下，那么idea会自动找到git的位置，如果更改了Git的安装位置则需要手动配置下Git的路径。选择File→Settings打开设置窗口，找到Version Control下的git选项：</p><img src="/posts/518e617c/1.jpg" class=""><h4 id="在Idea中操作Git"><a href="#在Idea中操作Git" class="headerlink" title="在Idea中操作Git"></a>在Idea中操作Git</h4><p>场景：本地已经有一个项目，但是并不是git项目，我们需要将这个放到码云的仓库里，和其他开发人员继续一起协作开发</p><h5 id="创建远程仓库"><a href="#创建远程仓库" class="headerlink" title="创建远程仓库"></a>创建远程仓库</h5><img src="/posts/518e617c/2.jpg" class=""><img src="/posts/518e617c/2.1.jpg" class=""><p>上图中＋号创建分支，按相应步骤即可。</p><h5 id="初始化本地仓库"><a href="#初始化本地仓库" class="headerlink" title="初始化本地仓库"></a>初始化本地仓库</h5><img src="/posts/518e617c/3.jpg" class=""><h5 id="设置远程仓库"><a href="#设置远程仓库" class="headerlink" title="设置远程仓库"></a>设置远程仓库</h5><img src="/posts/518e617c/4.jpg" class=""><h5 id="提交到本地仓库"><a href="#提交到本地仓库" class="headerlink" title="提交到本地仓库"></a>提交到本地仓库</h5><img src="/posts/518e617c/5.jpg" class=""><h5 id="推送到本地仓库"><a href="#推送到本地仓库" class="headerlink" title="推送到本地仓库"></a>推送到本地仓库</h5><img src="/posts/518e617c/6.jpg" class=""><h5 id="克隆远程仓库到本地"><a href="#克隆远程仓库到本地" class="headerlink" title="克隆远程仓库到本地"></a>克隆远程仓库到本地</h5><img src="/posts/518e617c/7.jpg" class=""><h5 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h5><ul><li><p>常规方式</p><img src="/posts/518e617c/8.jpg" class=""></li><li><p>强大方式</p><img src="/posts/518e617c/9.jpg" class=""></li></ul><h5 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h5><img src="/posts/518e617c/10.jpg" class=""><h5 id="解决冲突（重点）"><a href="#解决冲突（重点）" class="headerlink" title="解决冲突（重点）"></a>解决冲突（重点）</h5><p>如果员工甲和员工乙同时修改了同一份文件并commit和push，此时会发生冲突。</p><p>任何情况下都应该先将别人写的代码pull到本地，分析他人的提交日志，将别人写的代码添加到自己的文件中，然后在commit and push.</p>]]></content>
+      
+      
+      
         <tags>
             
             <tag> git </tag>

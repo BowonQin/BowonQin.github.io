@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="java基础(面经), java 后端 数据库 中间件">
+    <meta name="keywords" content="docker安装镜像和容器, java 后端 数据库 中间件">
     <meta name="description" content="java后端相关技术栈">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>java基础(面经) | Bowon Qin</title>
+    <title>docker安装镜像和容器 | Bowon Qin</title>
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -342,7 +342,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">java基础(面经)</h1>
+                    <h1 class="description center-align post-title">docker安装镜像和容器</h1>
                 </div>
             </div>
         </div>
@@ -461,29 +461,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                                <span class="chip bg-color">面试</span>
-                            </a>
-                        
-                            <a href="/tags/java%E5%9F%BA%E7%A1%80/">
-                                <span class="chip bg-color">java基础</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/" class="post-category">
-                                面试篇
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -492,28 +475,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-17
+                    2022-01-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-20
+                    2022-01-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
 
@@ -531,107 +514,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java基础部分"><a href="#Java基础部分" class="headerlink" title="Java基础部分"></a>Java基础部分</h1><blockquote>
-<ol>
-<li>一个”.java”源文件中是否可以包括多个类（不是内部类）？有什么限制？</li>
-</ol>
-</blockquote>
-<p>可以有多个类，但只能有一个public的类，并且public的类名必须与文件名相一致。</p>
-<blockquote>
-<ol start="2">
-<li>Java有没有goto?</li>
-</ol>
-</blockquote>
-<p>java中的保留字，现在没有在java中使用。</p>
-<blockquote>
-<ol start="3">
-<li>说说&amp;和&amp;&amp;的区别。</li>
-</ol>
-</blockquote>
-<p>① &amp;和&amp;&amp;都可以用作逻辑与的运算符，表示逻辑与（and），当运算符两边的表达式的结true时，整个运算结果才为true，否则，只要有一方为false，则结果为false。</p>
-<p>② &amp;&amp;还具有短路的功能，即如果第一个表达式为false，则不再计算第二个表达式。例如，对于if(str != null &amp;&amp; !str.equals(“”))表达式，当str为null时，后面的表达式不会执行，所以不会出现NullPointerException如果将&amp;&amp;改为&amp;，则会抛出NullPointerException异常。If(x==33 &amp; ++y&gt;0) y会增长，If(x==33 &amp;&amp; ++y&gt;0)不会增长。</p>
-<p>③ &amp;还可以用作位运算符，当&amp;操作符两边的表达式不是boolean类型时，&amp;表示按位与操作，我们通常使用0x0f来与一个整数进行&amp;运算，来获取该整数的最低4个bit位，例如，0x31 &amp; 0x0f的结果为0x01。 </p>
-<blockquote>
-<ol start="4">
-<li>switch语句能否作用在byte上，能否作用在long上，能否作用在String上? </li>
-</ol>
-</blockquote>
-<p>在switch（expr1）中，expr1只能是一个整数表达式或者枚举常量（更大字体），整数表达式可以是int基本类型或Integer包装类型，由于，byte,short,char都可以隐含转换为int，所以，这些类型以及这些类型的包装类型也是可以的。显然，long和String类型都不符合switch的语法规定，并且不能被隐式转换成int类型，所以，它们不能作用于swtich语句中。</p>
-<p>注： </p>
-<ul>
-<li><p>自java 1.7以后, java switch开始支持String类型。String可以通过hashcode和equals共同判断。</p>
-</li>
-<li><p>switch 对应的 JVM 字节码 <strong>lookupswitch、tableswitch</strong> 指令<strong>只支持 int 类型</strong>。因此long类似不能作用于swtich上。</p>
-</li>
-</ul>
-<blockquote>
-<ol start="5">
-<li>short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错?</li>
-</ol>
-</blockquote>
-<p>对于short s1 = 1; s1 = s1 + 1; 由于s1+1运算时会<strong>自动提升表达式的类型</strong>，所以结果是int型，再赋值给short类型s1时，编译器将报告需要强制转换类型的错误。</p>
-<p>对于short s1 = 1; s1 += 1;由于 += 是java语言规定的运算符，java编译器会对它进行特殊处理，因此可以正确编译。 </p>
-<blockquote>
-<ol start="6">
-<li>char型变量中能不能存贮一个中文汉字?为什么？</li>
-</ol>
-</blockquote>
-<p>char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变量中当然可以存储汉字啦。不过，如果某个特殊的汉字没有被包含在unicode编码字符集中，那么，这个char型变量中就不能存储这个特殊汉字。补充说明：unicode编码占用两个字节，所以，char类型的变量也是占用两个字节。</p>
-<p>备注：后面一部分回答虽然不是在正面回答题目，但是，为了展现自己的学识和表现自己对问题理解的透彻深入，可以回答一些相关的知识，做到知无不言，言无不尽。</p>
-<blockquote>
-<ol start="7">
-<li>java基本数据类型相关</li>
-</ol>
-</blockquote>
-<img src="/posts/javabase/1640010317.jpg" class>
-
-
-
-<blockquote>
-<ol start="8">
-<li>用最有效率的方法算出2乘以8等于几? </li>
-</ol>
-</blockquote>
-<p>2 &lt;&lt; 3</p>
-<p>因为将一个数左移n位，就相当于乘以了2的n次方，那么，一个数乘以8只要将其左移3位即可，而位运算cpu直接支持的，效率最高，所以，2乘以8等於几的最效率的方法是2 &lt;&lt; 3。</p>
-<ul>
-<li><p>左移运算符： 左移运算符用“&lt;&lt;”表示，是将运算符左边的对象，向左移动运算符右边指定的位数，并且在低位补零。其实，向左移n 位，就相当于乘上2 的n 次方：</p>
-<p>2&lt;&lt;3 = 2*2^3=16</p>
-<p>3&lt;&lt;3  = 3*2^3=24</p>
-<p>4&lt;&lt;2  = 4*2^2=16</p>
-</li>
-<li><p>无符号右移运算符：右移运算符无符号用“&gt;&gt;&gt;”表示，是将运算符左边的对象向右移动运算符右边指定的位数，并且在高位补0，其实右移n 位，就相当于除上2 的n 次方：</p>
-<p>16&gt;&gt;&gt;3 = 16/(2^3) =2</p>
-<p>16&gt;&gt;&gt;5 = 16/(2^5) = 0 </p>
-</li>
-<li><p>带符号右移运算符用“&gt;&gt;”表示，是将运算符左边的运算对象，向右移动运算符右边指定的位数。如果是正数，在高位补零，如果是负数，则在高位补1。</p>
-<p>16&gt;&gt;3 = 16/(2^3) = 2</p>
-<p>-16&gt;&gt;3= -16/(2^3) = -2</p>
-</li>
-</ul>
-<blockquote>
-<ol start="9">
-<li>使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？</li>
-</ol>
-</blockquote>
-<p>使用final关键字修饰一个变量时，是指引用变量不能变，引用变量所指向的对象中的内容还是可以改变的。例如，对于如下语句：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">final</span> <span class="token class-name">StringBuffer</span> a<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token string">"immutable"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>执行如下语句将报告编译期错误：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">a<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>但是，执行如下语句则可以通过编译：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">a<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">" broken!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>有人在定义方法的参数时，可能想采用如下形式来阻止方法内部修改传进来的参数对象：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token keyword">final</span>  <span class="token class-name">StringBuffer</span>  param<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    
-<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>实际上，这是办不到的，在该方法内部仍然可以增加如下代码来修改参数对象：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">param<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
+                
                 
             </div>
             <hr/>
@@ -647,7 +530,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">qxd</a>
+                    <a href="/about" rel="external nofollow noreferrer">Bowon Qin</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -657,7 +540,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://bowonqin.github.io/posts/javabase.html">https://bowonqin.github.io/posts/javabase.html</a>
+                    <a href="https://bowonqin.github.io/posts/95fa03d.html">https://bowonqin.github.io/posts/95fa03d.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -670,7 +553,7 @@
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="/about" target="_blank">qxd</a>
+                    <a href="/about" target="_blank">Bowon Qin</a>
                     !
                 </span>
             </div>
@@ -694,15 +577,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                                    <span class="chip bg-color">面试</span>
-                                </a>
-                            
-                                <a href="/tags/java%E5%9F%BA%E7%A1%80/">
-                                    <span class="chip bg-color">java基础</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -748,31 +623,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/1111222.html">
+                <a href="/posts/jvm.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928020152.jpg" class="responsive-img" alt="Mybatis(基础)">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928021332.jpg" class="responsive-img" alt="JVM">
                         
-                        <span class="card-title">Mybatis(基础)</span>
+                        <span class="card-title">JVM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Mybatis(基础)
+                            JVM
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-17
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SSM%E7%AF%87/" class="post-category">
-                                    SSM篇
+                            <a href="/categories/java%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    java基础
                                 </a>
                             
                             
@@ -782,8 +657,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                    <a href="/tags/jvm/">
+                        <span class="chip bg-color">jvm</span>
                     </a>
                     
                 </div>
@@ -797,33 +676,29 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2.html">
+                <a href="/posts/518e617c.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928013346.png" class="responsive-img" alt="Springboot+SpringSecurity+Vue后台管理系统">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928020616.jpg" class="responsive-img" alt="git">
                         
-                        <span class="card-title">Springboot+SpringSecurity+Vue后台管理系统</span>
+                        <span class="card-title">git</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            从零制作Springboot+SpringSecurity+Vue后台管理系统
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-04
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE%E7%AF%87/" class="post-category">
-                                    实战项目篇
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bowon Qin
                             
                         </span>
                     </div>
@@ -831,20 +706,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE/">
-                        <span class="chip bg-color">实战项目</span>
-                    </a>
-                    
-                    <a href="/tags/Springboot/">
-                        <span class="chip bg-color">Springboot</span>
-                    </a>
-                    
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
-                    </a>
-                    
-                    <a href="/tags/SpringSecurity/">
-                        <span class="chip bg-color">SpringSecurity</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
                 </div>

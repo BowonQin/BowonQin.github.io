@@ -1,0 +1,1659 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Mysql(MySQL运维篇), java 后端 数据库 中间件">
+    <meta name="description" content="java后端相关技术栈">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google-site-verification" content="pBWoGvVEP36FzzS4xIpoMejc5UKi3RKcxd9rWWcjiDg" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Mysql(MySQL运维篇) | Bowon Qin</title>
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aaa6c944b0ed07922901d7fc571a171d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Bowon Qin</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-paper-plane" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tag" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tools" class="waves-effect waves-light">
+      
+      <i class="fas fa-suitcase" style="zoom: 0.6;"></i>
+      
+      <span>百宝箱</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-link" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Bowon Qin</div>
+        <div class="logo-desc">
+            
+            java后端相关技术栈
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-paper-plane"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tag"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tools" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-suitcase"></i>
+			
+			百宝箱
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-link"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/BowonQin/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/BowonQin/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928013951.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Mysql(MySQL运维篇)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        background-color: white;
+        width: 345px;
+        padding-left: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+    
+    #toc-content {
+        height: calc(100vh - 300px);
+        overflow: scroll;
+
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+        bottom: 120px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Mysql/">
+                                <span class="chip bg-color">Mysql</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                            <a href="/tags/MyCat/">
+                                <span class="chip bg-color">MyCat</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Mysql%E8%BF%90%E7%BB%B4%E7%AF%87/" class="post-category">
+                                Mysql运维篇
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-01-07
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-02-15
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="MySQL运维篇"><a href="#MySQL运维篇" class="headerlink" title="MySQL运维篇"></a>MySQL运维篇</h2><h3 id="1-日志"><a href="#1-日志" class="headerlink" title="1. 日志"></a>1. 日志</h3><h4 id="1-1-错误日志"><a href="#1-1-错误日志" class="headerlink" title="1.1 错误日志"></a>1.1 错误日志</h4><p>错误日志是 MySQL 中最重要的日志之一，它记录了当 mysqld 启动和停止时，以及服务器在运行过程中发生任何严重错误时的相关信息。当数据库出现任何故障导致无法正常使用时，建议首先查看此日志。</p>
+<p>该日志是默认开启的，默认存放目录 /var/log/，默认的日志文件名为 mysqld.log 。查看日志位置：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show variables like '%log_error%';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h4 id="1-2-二进制日志"><a href="#1-2-二进制日志" class="headerlink" title="1.2 二进制日志"></a>1.2 二进制日志</h4><ul>
+<li><p>介绍</p>
+<p>二进制日志（BINLOG）记录了所有的 DDL（数据定义语言）语句和 DML（数据操纵语言）语句，但不包括数据查询（SELECT、SHOW）语句。</p>
+<p>作用：①. 灾难时的数据恢复；②. MySQL的主从复制。在MySQL8版本中，默认二进制日志是开启着的，涉及到的参数如下：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show variables like '%log_bin%';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/posts/mysql-yun-wei-pian/1.jpg" class="">
+</li>
+<li><p>日志格式</p>
+<p>MySQL服务器中提供了多种格式来记录二进制日志，具体格式及特点如下：</p>
+<img src="/posts/mysql-yun-wei-pian/2.jpg" class="">
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show variables like '%binlog_format%';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>日志查看</p>
+<p>由于日志是以二进制方式存储的，不能直接读取，需要通过二进制日志查询工具 mysqlbinlog 来查看，具体语法：</p>
+<img src="/posts/mysql-yun-wei-pian/3.jpg" class="">
+</li>
+<li><p>日志删除</p>
+<p>对于比较繁忙的业务系统，每天生成的binlog数据巨大，如果长时间不清除，将会占用大量磁盘空间。可以通过以下几种方式清理日志：</p>
+<img src="/posts/mysql-yun-wei-pian/4.jpg" class="">
+
+<p>也可以在mysql的配置文件中配置二进制日志的过期时间，设置了之后，二进制日志过期会自动删除。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show variables like '%binlog_expire_logs_seconds%';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+</li>
+</ul>
+<h4 id="1-3-查询日志"><a href="#1-3-查询日志" class="headerlink" title="1.3 查询日志"></a>1.3 查询日志</h4><p>查询日志中记录了客户端的所有操作语句，而二进制日志不包含查询数据的SQL语句。默认情况下， 查询日志是未开启的。如果需要开启查询日志，可以设置以下配置 ：</p>
+<img src="/posts/mysql-yun-wei-pian/5.jpg" class="">
+
+<p>修改MySQL的配置文件 /etc/my.cnf 文件，添加如下内容：</p>
+<img src="/posts/mysql-yun-wei-pian/6.jpg" class="">
+
+
+
+<h4 id="1-4-慢查询日志"><a href="#1-4-慢查询日志" class="headerlink" title="1.4 慢查询日志"></a>1.4 慢查询日志</h4><p>慢查询日志记录了所有执行时间超过参数 long_query_time 设置值并且扫描记录数不小于 min_examined_row_limit</p>
+<p>的所有的SQL语句的日志，默认未开启。long_query_time 默认为 10 秒，最小为 0， 精度可以到微秒。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 慢查询日志
+slow_query_log = 1
+# 执行时间
+long_query_time = 2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>默认情况下，不会记录管理语句，也不会记录不使用索引进行查找的查询。可以使用log_slow_admin_statements和</p>
+<p>更改此行为 log_queries_not_using_indexes，如下所述。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 记录执行较慢的管理语句
+log_slow_admin_statements = 1
+
+# 记录执行较慢的未使用索引的语句
+log_queries_not_using_indexes =1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-主从复制"><a href="#2-主从复制" class="headerlink" title="2. 主从复制"></a>2. 主从复制</h3><ul>
+<li><p>概述：</p>
+<p>主从复制是指将主数据库的DDL 和 DML 操作通过二进制日志传到从库服务器中，然后在从库上对这些日志重新执行（也叫重做），从而使得从库和主库的数据保持同步。</p>
+<p>MySQL支持一台主库同时向多台从库进行复制， 从库同时也可以作为其他从服务器的主库，实现链状复制。</p>
+<img src="/posts/mysql-yun-wei-pian/7.jpg" class="">
+</li>
+<li><p>原理：</p>
+<img src="/posts/mysql-yun-wei-pian/8.jpg" class="">
+
+<p>  从上图来看，复制分成三步：</p>
+<pre><code>1. Master 主库在事务提交时，会把数据变更记录在二进制日志文件 Binlog 中。
+ 2. 从库读取主库的二进制日志文件 Binlog ，写入到从库的中继日志 Relay Log 。
+ 3. slave重做中继日志中的事件，将改变反映它自己的数据。</code></pre>
+</li>
+<li><p>搭建</p>
+<p>服务器准备</p>
+<img src="/posts/mysql-yun-wei-pian/9.jpg" class="">
+
+<p>准备好两台服务器之后，在上述的两台服务器中分别安装好MySQL，并完成基础的初始化准备工作。</p>
+</li>
+<li><p>主库配置</p>
+<ol>
+<li><p>修改配置文件 /etc/my.cnf、</p>
+<img src="/posts/mysql-yun-wei-pian/10.jpg" class="">
+</li>
+<li><p>重启MySQL服务器</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl restart mysqld;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>登录mysql，创建远程连接的账号，并授予主从复制权限</p>
+<img src="/posts/mysql-yun-wei-pian/11.jpg" class="">
+</li>
+<li><p>通过指令，查看二进制日志坐标</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show master status;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>字段含义说明：</p>
+<p>​    file : 从哪个日志文件开始推送日志文件</p>
+<p>​    position ： 从哪个位置开始推送日志</p>
+<p>​    binlog_ignore_db : 指定不需要同步的数据库 </p>
+</li>
+</ol>
+</li>
+<li><p>从库配置</p>
+<ol>
+<li><p>修改配置文件 /etc/my.cnf</p>
+<img src="/posts/mysql-yun-wei-pian/12.jpg" class="">
+</li>
+<li><p>重新启动MySQL服务</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl restart mysqld;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>登录mysql，设置主库配置</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CHANGE REPLICATION SOURCE TO SOURCE_HOST='XXX.XXX',SOURCE_USER='XXX',SOURCE_PASSWORD='XXX',SOURCE_LOGFILE='XXX',SOURCE_LOG_POS=XXX;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>上述是8.0.23中的语法。如果mysql是 8.0.23 之前的版本，执行如下SQL：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CHANGE MASTER  TO MASTER_HOST='XXX.XXX',MASTER_USER='XXX',MASTER_PASSWORD='XXX',MASTER_LOG_FILE='XXX',MASTER_LOG_POS=XXX;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/posts/mysql-yun-wei-pian/13.jpg" class="">
+</li>
+<li><p>开启同步操作</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">start replica; # 8.0.22之后
+start salve; # 8.0.22之前<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>查看主从同步状态</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">show replica status; # 8.0.22之后
+show slave status; # 8.0.22之前<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<img src="/posts/mysql-yun-wei-pian/14.jpg" class="">
+</li>
+</ol>
+</li>
+<li><p>测试</p>
+<ol>
+<li><p>在主库上创建数据库、表，并插入数据</p>
+<img src="/posts/mysql-yun-wei-pian/15.jpg" class="">
+</li>
+<li><p>在从库中查询数据，验证主从是否同步</p>
+</li>
+</ol>
+<img src="/posts/mysql-yun-wei-pian/16.jpg" class="">
+
+
+
+</li>
+</ul>
+<h3 id="3-分库分表"><a href="#3-分库分表" class="headerlink" title="3. 分库分表"></a>3. 分库分表</h3><h4 id="3-1-介绍"><a href="#3-1-介绍" class="headerlink" title="3.1 介绍"></a>3.1 介绍</h4><ul>
+<li><p>概述：</p>
+<p>Mycat是开源的、活跃的、基于Java语言编写的MySQL数据库中间件。可以像使用mysql一样来使用mycat，对于开发人员来说根本感觉不到mycat的存在。</p>
+</li>
+<li><p>优势:</p>
+<ul>
+<li>性能可靠稳定</li>
+<li>强大的技术团队</li>
+<li>体系完善</li>
+<li>社区活跃</li>
+</ul>
+</li>
+<li><p>安装</p>
+<p>Mycat是采用java语言开发的开源的数据库中间件，支持Windows和Linux运行环境，下面介绍MyCat的Linux中的环境搭建。我们需要在准备好的服务器中安装如下软件。</p>
+<ul>
+<li><p>MySQL</p>
+</li>
+<li><p>JDK</p>
+</li>
+<li><p>MyCat</p>
+<img src="/posts/mysql-yun-wei-pian/17.jpg" class="">
+</li>
+</ul>
+</li>
+<li><p>目录结构</p>
+<img src="/posts/mysql-yun-wei-pian/18.jpg" class="">
+
+<p>bin : 存放可执行文件，用于启动停止mycat</p>
+<p>conf：存放mycat的配置文件</p>
+<p>lib：存放mycat的项目依赖包（jar）</p>
+<p>logs：存放mycat的日志文件</p>
+</li>
+<li><p>概念介绍</p>
+<img src="/posts/mysql-yun-wei-pian/19.jpg" class="">
+
+</li>
+</ul>
+<h4 id="3-2-MyCat入门"><a href="#3-2-MyCat入门" class="headerlink" title="3.2 MyCat入门"></a>3.2 MyCat入门</h4><ul>
+<li><p>需求</p>
+<p>由于 tb_order 表中数据量很大，磁盘IO及容量都到达了瓶颈，现在需要对 tb_order表进行数据分片，分为三个数据节点，每一个节点主机位于不同的服务器上, 具体的结构，参考下图：</p>
+<img src="/posts/mysql-yun-wei-pian/20.jpg" class="">
+</li>
+<li><p>环境准备</p>
+<img src="/posts/mysql-yun-wei-pian/21.jpg" class="">
+</li>
+<li><p>分片规则</p>
+<img src="/posts/mysql-yun-wei-pian/22.jpg" class="">
+</li>
+<li><p>分片配置</p>
+<p>配置mycat的用户及用户的权限信息:</p>
+<img src="/posts/mysql-yun-wei-pian/23.jpg" class="">
+</li>
+<li><p>启动服务</p>
+<p>切换到Mycat的安装目录，执行如下指令，启动Mycat：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 启动
+bin/mycat start 
+
+# 停止
+bin/mycat stop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Mycat启动之后，占用端口号 8066。</p>
+<p>启动完毕之后，可以查看logs目录下的启动日志，查看Mycat是否启动完成。</p>
+<img src="/posts/mysql-yun-wei-pian/24.jpg" class="">
+</li>
+<li><p>分片测试</p>
+<p>通过如下指令，就可以连接并登陆MyCat。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">mysql -uroot -h192.168.59.132 -P 8066 -p123456 --default-auth=mysql_native_password<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后就可以在MyCat中来创建表，并往表结构中插入数据，查看数据在MySQL中的分布情况。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">create table TB_ORDER(
+    id bigint(20) not null,
+    title varchar(20) not null,
+    primary key(id)
+)engine=innodb default charset=utf8;
+insert into TB_ORDER(id,title) VALUES(1,'goods1');
+insert into TB_ORDER(id,title) VALUES(2,'goods2');
+insert into TB_ORDER(id,title) VALUES(3,'goods3');
+insert into TB_ORDER(id,title) VALUES(1000000,'goods1000000');
+insert into TB_ORDER(id,title) VALUES(10000000,'goods10000000');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ul>
+<h4 id="3-3-Mycat配置"><a href="#3-3-Mycat配置" class="headerlink" title="3.3 Mycat配置"></a>3.3 Mycat配置</h4><ul>
+<li><p>schema.xml</p>
+<p>schema.xml 作为MyCat中最重要的配置文件之一 , 涵盖了MyCat的逻辑库 、 逻辑表 、 分片规则、分片节点及数据源的配置。</p>
+<p>主要包含以下三组标签：</p>
+<ul>
+<li><p>schema标签</p>
+<img src="/posts/mysql-yun-wei-pian/25.jpg" class="">
+
+<p>schema 标签用于定义 MyCat实例中的逻辑库 , 一个MyCat实例中, 可以有多个逻辑库 , 可以通过 schema 标签来划分不同的逻辑库。</p>
+<p>MyCat中的逻辑库的概念 ， 等同于MySQL中的database概念 , 需要操作某个逻辑库下的表时, 也需要切换逻辑库(use xxx)。</p>
+<p>核心属性：</p>
+<ul>
+<li>name：指定自定义的逻辑库库名</li>
+<li>checkSQLschema：在SQL语句操作时指定了数据库名称，执行时是否自动去除；true：自动去除，false：不自动去除</li>
+<li> sqlMaxLimit：如果未指定limit进行查询，列表查询模式查询多少条记录</li>
+</ul>
+</li>
+<li><p>datanode标签</p>
+<img src="/posts/mysql-yun-wei-pian/26.jpg" class="">
+
+<p>dataNode标签中定义了MyCat中的数据节点, 也就是我们通常说的数据分片。一个dataNode标签就是一个独立的数据分片。</p>
+<p>核心属性：</p>
+<ul>
+<li>name：定义数据节点名称</li>
+<li>dataHost：数据库实例主机名称，引用自 dataHost 标签中name属性</li>
+<li>database：定义分片所属数据库</li>
+</ul>
+</li>
+<li><p>datahost标签</p>
+<img src="/posts/mysql-yun-wei-pian/27.jpg" class="">
+
+<p>该标签在MyCat逻辑库中作为底层标签存在, 直接定义了具体的数据库实例、读写分离、心跳语句。</p>
+<p>核心属性：</p>
+<ul>
+<li><p>name：唯一标识，供上层标签使用</p>
+</li>
+<li><p>maxCon/minCon：最大连接数/最小连接数</p>
+</li>
+<li><p>balance：负载均衡策略，取值 0,1,2,3 </p>
+</li>
+<li><p>writeType：写操作分发方式（0：写操作转发到第一个writeHost，第一个挂了，切换到第二个；1：写操作随机分发到配置的writeHost） </p>
+</li>
+<li><p> dbDriver：数据库驱动，支持 native、jdbc</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/posts/mysql-yun-wei-pian/28.jpg" class="">
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>rule.xml</p>
+<p>rule.xml中定义所有拆分表的规则, 在使用过程中可以灵活的使用分片算法, 或者对同一个分片算法使用不同的参数,它让分片过程可配置化。主要包含两类标签：tableRule、Function。</p>
+<img src="/posts/mysql-yun-wei-pian/29.jpg" class="">
+</li>
+<li><p>server.xml</p>
+<p>server.xml配置文件包含了MyCat的系统配置信息，主要有两个重要的标签：system、user。</p>
+<ul>
+<li><p>system标签</p>
+<p>对应的系统配置项及其含义，参考资料</p>
+<img src="/posts/mysql-yun-wei-pian/30.jpg" class="">
+</li>
+<li><p>user标签</p>
+<img src="/posts/mysql-yun-wei-pian/31.jpg" class="">
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-4-Mycat分片"><a href="#3-4-Mycat分片" class="headerlink" title="3.4 Mycat分片"></a>3.4 Mycat分片</h4><ul>
+<li><p>垂直拆分</p>
+<ul>
+<li><p>场景</p>
+<p>在业务系统中, 涉及以下表结构 ,但是由于用户与订单每天都会产生大量的数据, 单台服务器的数据存储及处理能力是有限的, 可以对数据库表进行拆分, 原有的数据库表如下</p>
+<img src="/posts/mysql-yun-wei-pian/32.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/33.jpg" class="">
+</li>
+<li><p>准备</p>
+<img src="/posts/mysql-yun-wei-pian/34.jpg" class="">
+</li>
+<li><p>配置</p>
+<img src="/posts/mysql-yun-wei-pian/35.jpg" class="">
+</li>
+<li><p>测试</p>
+<p>在mycat的命令行中，通过source指令导入表结构，以及对应的数据，查看数据分布情况。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">source /root/shopping-table.sql
+source /root/shopping-insert.sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>查询用户的收件人及收件人地址信息(包含省、市、区)。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT
+	ua.user_id,
+	ua.contact,
+	p.province,
+	c.city,
+	r.area,
+	ua.address 
+FROM
+	tb_user_address ua,
+	tb_areas_city c,
+	tb_areas_provinces p,
+	tb_areas_region r 
+WHERE
+	ua.province_id = p.provinceid 
+	AND ua.city_id = c.cityid 
+	AND ua.town_id = r.areaid;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查询每一笔订单及订单的收件地址信息(包含省、市、区)。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT
+	order_id,
+	payment,
+	receiver,
+	province,
+	city,
+	area 
+FROM
+	tb_order_master o,
+	tb_areas_provinces p,
+	tb_areas_city c,
+	tb_areas_region r 
+WHERE
+	o.receiver_province = p.provinceid 
+	AND o.receiver_city = c.cityid 
+	AND o.receiver_region = r.areaid;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>全局配置</p>
+<p>对于省、市、区/县表tb_areas_provinces , tb_areas_city , tb_areas_region，是属于数据字典表，在多个业务模块中都可能会遇到，可以将其设置为全局表，利于业务操作。</p>
+<img src="/posts/mysql-yun-wei-pian/36.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/37.jpg" class="">
+</li>
+</ul>
+</li>
+<li><p>水平拆分</p>
+<ul>
+<li><p>场景</p>
+<p>在业务系统中, 有一张表(日志表), 业务系统每天都会产生大量的日志数据 , 单台服务器的数据存储及处理能力是有限的, 可以对数据库表进行拆分。</p>
+<img src="/posts/mysql-yun-wei-pian/38.jpg" class="">
+</li>
+<li><p>准备</p>
+<img src="/posts/mysql-yun-wei-pian/39.jpg" class="">
+</li>
+<li><p>配置</p>
+<img src="/posts/mysql-yun-wei-pian/40.jpg" class="">
+</li>
+<li><p>测试</p>
+<p>在mycat的命令行中，执行如下SQL创建表、并插入数据，查看数据分布情况</p>
+<img src="/posts/mysql-yun-wei-pian/41.jpg" class="">
+</li>
+<li><p>分片规则-范围</p>
+<img src="/posts/mysql-yun-wei-pian/42.jpg" class="">
+</li>
+<li><p>分片规则-取模</p>
+<p>根据指定的字段值与节点数量进行求模运算，根据运算结果， 来决定该数据属于哪一个分片。</p>
+<img src="/posts/mysql-yun-wei-pian/43.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/44.jpg" class="">
+</li>
+<li><p>分片规则-一致性hash</p>
+<p>所谓一致性哈希， 相同的哈希因子计算值总是被划分到相同的分区表中，不会因为分区节点的增加而改变原来数据的分区位置。</p>
+<img src="/posts/mysql-yun-wei-pian/45.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/46.jpg" class="">
+</li>
+<li><p>分片规则-枚举</p>
+<p>通过在配置文件中配置可能的枚举值, 指定数据分布到不同数据节点上, 本规则适用于按照省份、性别、状态拆分数据等业务 。</p>
+<img src="/posts/mysql-yun-wei-pian/47.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/48.jpg" class="">
+</li>
+<li><p>分片规则-应用指定</p>
+<p>运行阶段由应用自主决定路由到那个分片 , 直接根据字符子串（必须是数字）计算分片号。</p>
+<img src="/posts/mysql-yun-wei-pian/49.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/50.jpg" class="">
+</li>
+<li><p>分片规则-固定分片hash算法</p>
+<p>该算法类似于十进制的求模运算，但是为二进制的操作，例如，取 id 的二进制低 10 位 与 1111111111 进行位 &amp; 运算</p>
+<img src="/posts/mysql-yun-wei-pian/51.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/52.jpg" class="">
+</li>
+<li><p>分片规则-字符串hash解析</p>
+<p>截取字符串中的指定位置的子字符串, 进行hash算法， 算出分片。</p>
+<img src="/posts/mysql-yun-wei-pian/53.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/54.jpg" class="">
+</li>
+<li><p>分片规则-按（天）日期分片</p>
+<img src="/posts/mysql-yun-wei-pian/55.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/56.jpg" class="">
+</li>
+<li><p>分片规则-自然月</p>
+<p>使用场景为按照月份来分片, 每个自然月为一个分片。</p>
+<img src="/posts/mysql-yun-wei-pian/57.jpg" class="">
+
+<img src="/posts/mysql-yun-wei-pian/58.jpg" class=""></li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">qxd</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://bowonqin.github.io/posts/mysql-yun-wei-pian.html">https://bowonqin.github.io/posts/mysql-yun-wei-pian.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">qxd</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Mysql/">
+                                    <span class="chip bg-color">Mysql</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                                <a href="/tags/MyCat/">
+                                    <span class="chip bg-color">MyCat</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,twitter,facebook,google,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/95fa03d.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928021245.jpg" class="responsive-img" alt="docker安装镜像和容器">
+                        
+                        <span class="card-title">docker安装镜像和容器</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bowon Qin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/518e617c.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928020616.jpg" class="responsive-img" alt="git">
+                        
+                        <span class="card-title">git</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bowon Qin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Bowon Qin<br />'
+            + '文章作者: Bowon Qin<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">Bowon Qin</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">97.5k</span>&nbsp;字
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "12";
+                    var startDate = "16";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/BowonQin/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:956143376@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=956143376" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 956143376" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+<!-- 深色模式按钮 -->
+    <script>
+        if (localStorage.getItem('dark') === '1') {
+        document.body.classList.add('dark');
+        }
+        else if (new Date().getHours() >= 22 || new Date().getHours() < 7) {
+        document.body.classList.add('dark');
+        } 
+        else if (matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        }
+    </script>
+    <a onclick="switchNightMode()" id="sma">
+        <i class="fas fa-lightbulb" id="nightMode" aria-hidden="true"></i>
+    </a>
+
+    <!-- 天气接口控件   -->
+    
+        <script type="text/javascript">
+        WIDGET = {FID: 'zLkJSQpqsh'}
+        </script>
+    <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+
+    <script type="text/javascript">
+      var windowWidth = $(window).width();
+      if (windowWidth > 768) {
+          document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+      }
+    </script>
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "4xxxxxxxe"
+        });
+        daovoice('update');
+    </script>
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

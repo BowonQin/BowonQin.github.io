@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
 </head>
 
 
@@ -543,7 +543,7 @@
 <h2 id="1-InnoDB-是如何存储数据的？"><a href="#1-InnoDB-是如何存储数据的？" class="headerlink" title="1. InnoDB 是如何存储数据的？"></a>1. InnoDB 是如何存储数据的？</h2><p>MySQL 把数据存储和查询操作抽象成了存储引擎，不同的存储引擎，对数据的存储和读取方式各不相同。MySQL 支持多种存储引擎，并且可以以表为粒度设置存储引擎。因为支持事务，我们最常使用的是 InnoDB。</p>
 <p>虽然数据保存在磁盘中，但其处理是在内存中进行的。为了减少磁盘随机读取次数，InnoDB 采用页而不是行的粒度来保存数据，即数据被分成若干页，以页为单位保存在磁盘中。InnoDB 的页大小，一般是 16KB。</p>
 <p>各个数据页组成一个双向链表，每个数据页中的记录按照主键顺序组成单向链表；每一个数据页中有一个页目录，方便按照主键查询记录。数据页的结构如下：</p>
-<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/1.jpg" class>
+<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/1.jpg" class="">
 
 <p>页目录通过槽把记录分成不同的小组，每个小组有若干条记录。如图所示，记录中最前面的小方块中的数字，代表的是当前分组的记录条数，最小和最大的槽指向 2 个特殊的伪记录。有了槽之后，我们按照主键搜索页中记录时，就可以采用二分法快速搜索，无需从最小记录开始遍历整个页中的记录链表。  </p>
 <p>举一个例子，如果要搜索主键（PK）=15 的记录：</p>
@@ -557,7 +557,7 @@
 </ul>
 <h2 id="2-聚簇索引和二级索引"><a href="#2-聚簇索引和二级索引" class="headerlink" title="2. 聚簇索引和二级索引"></a>2. 聚簇索引和二级索引</h2><p>说到索引，页目录就是最简单的索引，是通过对记录进行一级分组来降低搜索的时间复杂度。但，这样能够降低的时间复杂度数量级，非常有限。当有无数个数据页来存储表数据的时候，我们就需要考虑如何建立合适的索引，才能方便定位记录所在的页</p>
 <p>为了解决这个问题，InnoDB 引入了 B+ 树。如下图所示，B+ 树是一棵倒过来的树：</p>
-<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/2.jpg" class>
+<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/2.jpg" class="">
 
 <p>B+ 树的特点包括：</p>
 <ul>
@@ -570,7 +570,7 @@
 <p>InnoDB 会自动使用主键（唯一定义一条记录的单个或多个字段）作为聚簇索引的索引键（如果没有主键，就选择第一个不包含 NULL 值的唯一列）。上图方框中的数字代表了索引键的值，对聚簇索引而言一般就是主键。</p>
 <p>我们再看看 B+ 树如何实现快速查找主键。比如，我们要搜索 PK=4 的数据，通过根节点中的索引可以知道数据在第一个记录指向的 2 号页中，通过 2 号页的索引又可以知道数据在 5 号页，5 号页就是实际的数据页，然后再通过二分法查找页目录马上可以找到记录的指针。</p>
 <p>为了实现非主键字段的快速搜索，就引出了二级索引，也叫作非聚簇索引、辅助索引。二级索引，也是利用的 B+ 树的数据结构，如下图所示：</p>
-<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/3.jpg" class>
+<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/3.jpg" class="">
 
 <p>这次二级索引的叶子节点中保存的不是实际数据，而是主键，获得主键值后去聚簇索引中获得数据行。这个过程就叫作回表。</p>
 <p>举个例子，有个索引是针对用户名字段创建的，索引记录上面方块中的字母是用户名，按照顺序形成链表。如果我们要搜索用户名为 b 的数据，经过两次定位可以得出在 #5 数据页中，查出所有的主键为 7 和 6，再拿着这两个主键继续使用聚簇索引进行两次回表得到完整数据。</p>
@@ -610,7 +610,7 @@ KEY `create_time` (`create_time`) USING BTREE<span aria-hidden="true" class="lin
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">EXPLAIN SELECT * FROM person WHERE NAME='name1'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>执行计划如下，可以发现</p>
-<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/4.jpg" class>
+<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/4.jpg" class="">
 
 <ul>
 <li><p>key 字段代表实际走的是哪个索引，其值是 name_score，说明走的是 name_score 这个索引。</p>
@@ -623,7 +623,7 @@ KEY `create_time` (`create_time`) USING BTREE<span aria-hidden="true" class="lin
 
 <p>可以看到，Extra 列多了一行 Using index 的提示，证明这次查询直接查的是二级索引，免去了回表。</p>
 <p>原因很简单，联合索引中其实保存了多个索引列的值，对于页中的记录先按照字段 1 排序，如果相同再按照字段 2 排序，如图所示：</p>
-<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/5.jpg" class>
+<img src="/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao/5.jpg" class="">
 
 <p>图中，叶子节点每一条记录的第一和第二个方块是索引列的数据，第三个方块是记录的主键。如果我们需要查询的是索引列索引或联合索引能覆盖的数据，那么查询索引本身已经“覆盖”了需要的数据，不再需要回表查询。因此，这种情况也叫作索引覆盖。</p>
 <p>最后，总结下关于索引开销的最佳实践吧。</p>
@@ -653,16 +653,16 @@ SET optimizer_trace="enabled=off";<span aria-hidden="true" class="line-numbers-r
 <p>对于按照 create_time&gt;’2020-01-24 05:00:00’条件走全表扫描的 SQL，我从 OPTIMIZER_TRACE 的执行结果中，摘出了几个重要片段来重点分析：</p>
 <ul>
 <li><p>使用 name_score 对 name84059&lt;name 条件进行索引扫描需要扫描 25362 行，成本是 30435，因此最终没有选择这个方案。这里的 30435 是查询二级索引的 IO 成本和 CPU 成本之和，再加上回表查询聚簇索引的 IO 成本和 CPU 成本之和，我就不再具体分析了：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">{
-  "index": "name_score",
-  "ranges": [
-    "name84059 &lt; name"
-  ],
-  "rows": 25362,
-  "cost": 30435,
-  "chosen": false,
-  "cause": "cost"
-},<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"name_score"</span><span class="token punctuation">,</span>
+  <span class="token property">"ranges"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"name84059 &lt; name"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token number">25362</span><span class="token punctuation">,</span>
+  <span class="token property">"cost"</span><span class="token operator">:</span> <span class="token number">30435</span><span class="token punctuation">,</span>
+  <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">"cause"</span><span class="token operator">:</span> <span class="token string">"cost"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -670,49 +670,49 @@ SET optimizer_trace="enabled=off";<span aria-hidden="true" class="line-numbers-r
 </ul>
 <ul>
 <li><p>使用 create_time 进行索引扫描需要扫描 23758 行，成本是 28511，同样因为成本原因没有选择这个方案：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">
-{
-  "index": "create_time",
-  "ranges": [
-    "0x5e2a79d0 &lt; create_time"
-  ],
-  "rows": 23758,
-  "cost": 28511,
-  "chosen": false,
-  "cause": "cost"
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">
+<span class="token punctuation">{</span>
+  <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"create_time"</span><span class="token punctuation">,</span>
+  <span class="token property">"ranges"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"0x5e2a79d0 &lt; create_time"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token number">23758</span><span class="token punctuation">,</span>
+  <span class="token property">"cost"</span><span class="token operator">:</span> <span class="token number">28511</span><span class="token punctuation">,</span>
+  <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">"cause"</span><span class="token operator">:</span> <span class="token string">"cost"</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>最终选择了全表扫描方式作为执行计划。可以看到，全表扫描 100086 条记录的成本是 20306，和我们之前计算的一致，显然是小于其他两个方案的 28511 和 30435：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">
-{
-  "considered_execution_plans": [{
-    "table": "`person`",
-    "best_access_path": {
-      "considered_access_paths": [{
-        "rows_to_scan": 100086,
-        "access_type": "scan",
-        "resulting_rows": 100086,
-        "cost": 20306,
-        "chosen": true
-      }]
-    },
-    "rows_for_plan": 100086,
-    "cost_for_plan": 20306,
-    "chosen": true
-  }]
-},<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">
+<span class="token punctuation">{</span>
+  <span class="token property">"considered_execution_plans"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token property">"table"</span><span class="token operator">:</span> <span class="token string">"`person`"</span><span class="token punctuation">,</span>
+    <span class="token property">"best_access_path"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"considered_access_paths"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+        <span class="token property">"rows_to_scan"</span><span class="token operator">:</span> <span class="token number">100086</span><span class="token punctuation">,</span>
+        <span class="token property">"access_type"</span><span class="token operator">:</span> <span class="token string">"scan"</span><span class="token punctuation">,</span>
+        <span class="token property">"resulting_rows"</span><span class="token operator">:</span> <span class="token number">100086</span><span class="token punctuation">,</span>
+        <span class="token property">"cost"</span><span class="token operator">:</span> <span class="token number">20306</span><span class="token punctuation">,</span>
+        <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"rows_for_plan"</span><span class="token operator">:</span> <span class="token number">100086</span><span class="token punctuation">,</span>
+    <span class="token property">"cost_for_plan"</span><span class="token operator">:</span> <span class="token number">20306</span><span class="token punctuation">,</span>
+    <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>把 SQL 中的 create_time 条件从 05:00 改为 06:00，再次分析 OPTIMIZER_TRACE 可以看到，这次执行计划选择的是走 create_time 索引。因为是查询更晚时间的数据，走 create_time 索引需要扫描的行数从 23758 减少到了 16588。这次走这个索引的成本 19907 小于全表扫描的 20306，更小于走 name_score 索引的 30435：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">
-{
-  "index": "create_time",
-  "ranges": [
-    "0x5e2a87e0 &lt; create_time"
-  ],
-  "rows": 16588,
-  "cost": 19907,
-  "chosen": true
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">
+<span class="token punctuation">{</span>
+  <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"create_time"</span><span class="token punctuation">,</span>
+  <span class="token property">"ranges"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"0x5e2a87e0 &lt; create_time"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token number">16588</span><span class="token punctuation">,</span>
+  <span class="token property">"cost"</span><span class="token operator">:</span> <span class="token number">19907</span><span class="token punctuation">,</span>
+  <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -728,43 +728,43 @@ SET optimizer_trace="enabled=off";<span aria-hidden="true" class="line-numbers-r
 <ul>
 <li><p>关于使用optimizer_trace 分析覆盖索引和回表两者对比</p>
 <p>覆盖索引：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">analyzing_range_alternatives": {
-                    "range_scan_alternatives": [
-                      {
-                        "index": "name_score",
-                        "ranges": [
-                          "name1 &lt;= name &lt;= name1"
-                        ] /* ranges */,
-                        "index_dives_for_eq_ranges": true,
-                        "rowid_ordered": false,
-                        "using_mrr": false,
-                        "index_only": true,
-                        "rows": 1,
-                        "cost": 1.21,
-                        "chosen": true
-                      }
-                    ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">analyzing_range_alternatives"<span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"range_scan_alternatives"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                      <span class="token punctuation">{</span>
+                        <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"name_score"</span><span class="token punctuation">,</span>
+                        <span class="token property">"ranges"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                          <span class="token string">"name1 &lt;= name &lt;= name1"</span>
+                        <span class="token punctuation">]</span> <span class="token comment">/* ranges */</span><span class="token punctuation">,</span>
+                        <span class="token property">"index_dives_for_eq_ranges"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                        <span class="token property">"rowid_ordered"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                        <span class="token property">"using_mrr"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                        <span class="token property">"index_only"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                        <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                        <span class="token property">"cost"</span><span class="token operator">:</span> <span class="token number">1.21</span><span class="token punctuation">,</span>
+                        <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                      <span class="token punctuation">}</span>
+                    <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 </li>
 </ul>
 <p>  回表：</p>
-  <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">"range_scan_alternatives": [
-                      {
-                        "index": "name_score",
-                        "ranges": [
-                          "name1 &lt;= name &lt;= name1"
-                        ] /* ranges */,
-                        "index_dives_for_eq_ranges": true,
-                        "rowid_ordered": false,
-                        "using_mrr": false,
-                        "index_only": false,
-                        "rows": 1,
-                        "cost": 2.21,
-                        "chosen": true
-                      }
-                    ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"range_scan_alternatives"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                      <span class="token punctuation">{</span>
+                        <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"name_score"</span><span class="token punctuation">,</span>
+                        <span class="token property">"ranges"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                          <span class="token string">"name1 &lt;= name &lt;= name1"</span>
+                        <span class="token punctuation">]</span> <span class="token comment">/* ranges */</span><span class="token punctuation">,</span>
+                        <span class="token property">"index_dives_for_eq_ranges"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                        <span class="token property">"rowid_ordered"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                        <span class="token property">"using_mrr"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                        <span class="token property">"index_only"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                        <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                        <span class="token property">"cost"</span><span class="token operator">:</span> <span class="token number">2.21</span><span class="token punctuation">,</span>
+                        <span class="token property">"chosen"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                      <span class="token punctuation">}</span>
+                    <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>  明显可以看出覆盖索引的时间成本远小于回表成本</p>
 

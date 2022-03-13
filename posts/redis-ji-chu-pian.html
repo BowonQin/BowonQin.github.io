@@ -510,14 +510,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.5k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    15 分
                 </div>
                 
 
@@ -575,144 +575,6 @@
 <li>支持主从集群、分片集群</li>
 <li>支持多语言客户端</li>
 </ul>
-<h5 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h5><p>大多数企业都是基于Linux服务器来部署项目，而且Redis官方也没有提供Windows版本的安装包。因此课程中我们会基于Linux系统来安装Redis.</p>
-<p>此处选择的Linux版本为CentOS 7.</p>
-<p>Redis的官方网站地址：<a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a></p>
-<ul>
-<li><p>单机版安装</p>
-<ol>
-<li><p>安装Redis依赖</p>
-<p>Redis是基于C语言编写的，因此首先需要安装Redis所需要的gcc依赖：、</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yum install -y gcc tcl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li><p>上传安装包并解压</p>
-<img src="/posts/redis-ji-chu-pian/image-20211211071712536.png" class="">
-
-<p>解压缩：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">tar -xzf redis-6.2.6.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>进入redis目录：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cd redis-6.2.6<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>运行编译命令：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">make &amp;&amp; make install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果没有出错，应该就安装成功了。</p>
-<p>默认的安装路径是在 <code>/usr/local/bin</code>目录下：</p>
-<img src="/posts/redis-ji-chu-pian/image-20211211080603710.png" class="">
-
-<p>该目录以及默认配置到环境变量，因此可以在任意目录下运行这些命令。其中：</p>
-<ul>
-<li>redis-cli：是redis提供的命令行客户端</li>
-<li>redis-server：是redis的服务端启动脚本</li>
-<li>redis-sentinel：是redis的哨兵启动脚本</li>
-</ul>
-</li>
-<li><p>启动</p>
-<p>redis的启动方式有很多种，例如：</p>
-<ul>
-<li>默认启动</li>
-<li>指定配置启动</li>
-<li>开机自启</li>
-</ul>
-<p><strong>默认启动</strong></p>
-<p>安装完成后，在任意目录输入redis-server命令即可启动Redis：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">redis-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如图：</p>
-<p>​    <img src="/posts/redis-ji-chu-pian/image-20211211081716167.png" class=""></p>
-<p>这种启动属于前台启动，会阻塞整个会话窗口，窗口关闭或者按下CTRL + C则Redis停止。不推荐使用。</p>
-</li>
-</ol>
-</li>
-</ul>
-<pre><code> **指定配置启动**
-
- 如果要让Redis以后台方式启动，则必须修改Redis配置文件，就在我们之前解压的redis安装包下（/usr/local/src/redis-6.2.6），名字叫redis.conf：
-
- ​    {%asset_img image-20211211082225509.png%}
-
- 我们先将这个配置文件备份一份：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cp redis.conf redis.conf.bck<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
- 然后修改redis.conf文件中的一些配置：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 允许访问的地址，默认是127.0.0.1，会导致只能在本地访问。修改为0.0.0.0则可以在任意IP访问，生产环境不要设置为0.0.0.0
-bind 0.0.0.0
-# 守护进程，修改为yes后即可后台运行
-daemonize yes 
-# 密码，设置后访问Redis必须输入密码
-requirepass 123321<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
- Redis的其它常见配置：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 监听的端口
-port 6379
-# 工作目录，默认是当前目录，也就是运行redis-server时的命令，日志、持久化等文件会保存在这个目录
-dir .
-# 数据库数量，设置为1，代表只使用1个库，默认有16个库，编号0~15
-databases 1
-# 设置redis能够使用的最大内存
-maxmemory 512mb
-# 日志文件，默认为空，不记录日志，可以指定日志文件名
-logfile "redis.log"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
- 启动Redis：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 进入redis安装目录 
-cd /usr/local/src/redis-6.2.6
-# 启动
-redis-server redis.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
- 停止服务：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 利用redis-cli来执行 shutdown 命令，即可停止 Redis 服务，
-# 因为之前配置了密码，因此需要通过 -u 来指定密码
-redis-cli -u 123321 shutdown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
-
- **开机自启**
-
- 我们也可以通过配置来实现开机自启。
-
- 首先，新建一个系统服务文件：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">vi /etc/systemd/system/redis.service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
- 内容如下：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Unit]
-Description=redis-server
-After=network.target
-
-[Service]
-Type=forking
-ExecStart=/usr/local/bin/redis-server /usr/local/src/redis-6.2.6/redis.conf
-PrivateTmp=true
-
-[Install]
-WantedBy=multi-user.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
- 然后重载系统服务：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl daemon-reload <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
- 现在，我们可以用下面这组命令来操作redis了：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 启动
-systemctl start redis
-# 停止
-systemctl stop redis
-# 重启
-systemctl restart redis
-# 查看状态
-systemctl status redis<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
- 执行下面的命令，可以让redis开机自启：
-
- <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl enable redis<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></code></pre>
 <h4 id="Redis常见命令"><a href="#Redis常见命令" class="headerlink" title="Redis常见命令"></a>Redis常见命令</h4><h5 id="Redis数据结构介绍"><a href="#Redis数据结构介绍" class="headerlink" title="Redis数据结构介绍"></a>Redis数据结构介绍</h5><p>Redis是一个key-value的数据库，key一般是String类型，不过value的类型多种多样：</p>
 <p>​    <img src="/posts/redis-ji-chu-pian/1.jpg" class=""></p>
 <p>Redis为了方便我们学习，将操作不同数据类型的命令也做了分组，在官网（ <a target="_blank" rel="noopener" href="https://redis.io/commands">https://redis.io/commands</a> ）可以查看到不同的命令</p>
@@ -1699,7 +1561,7 @@ systemctl status redis<span aria-hidden="true" class="line-numbers-rows"><span><
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">99.8k</span>&nbsp;字
+                class="white-color">98.9k</span>&nbsp;字
             
             
             

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bowonqin.github.io/posts/redis-an-zhuang-pian.html</loc>
+    
+    <lastmod>2022-03-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bowonqin.github.io/posts/redis-ji-chu-pian.html</loc>
     
     <lastmod>2022-03-13</lastmod>

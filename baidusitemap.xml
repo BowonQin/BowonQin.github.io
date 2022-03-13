@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://bowonqin.github.io/posts/redis-ji-chu-pian.html</loc>
+    <lastmod>2022-03-13</lastmod>
+  </url>
+  <url>
     <loc>https://bowonqin.github.io/posts/mysql-yun-wei-pian.html</loc>
     <lastmod>2022-02-15</lastmod>
   </url>
@@ -45,20 +49,12 @@
     <lastmod>2021-12-27</lastmod>
   </url>
   <url>
-    <loc>https://bowonqin.github.io/posts/122s22.html</loc>
-    <lastmod>2021-12-26</lastmod>
-  </url>
-  <url>
     <loc>https://bowonqin.github.io/posts/mysql11.html</loc>
     <lastmod>2021-12-23</lastmod>
   </url>
   <url>
     <loc>https://bowonqin.github.io/posts/mysql10.html</loc>
     <lastmod>2021-12-23</lastmod>
-  </url>
-  <url>
-    <loc>https://bowonqin.github.io/posts/3da77555.html</loc>
-    <lastmod>2021-12-21</lastmod>
   </url>
   <url>
     <loc>https://bowonqin.github.io/posts/mysql9.html</loc>
@@ -110,10 +106,6 @@
   </url>
   <url>
     <loc>https://bowonqin.github.io/posts/niuke100.html</loc>
-    <lastmod>2021-12-20</lastmod>
-  </url>
-  <url>
-    <loc>https://bowonqin.github.io/posts/2.html</loc>
     <lastmod>2021-12-20</lastmod>
   </url>
   <url>

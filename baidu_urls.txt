@@ -1,5 +1,6 @@
 https://bowonqin.github.io/posts/redis-shi-jian-pian.html
 https://bowonqin.github.io/posts/redis-ji-chu-pian.html
+https://bowonqin.github.io/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao.html
 https://bowonqin.github.io/posts/redis-an-zhuang-pian.html
 https://bowonqin.github.io/posts/jvm.html
 https://bowonqin.github.io/posts/95fa03d.html

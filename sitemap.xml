@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bowonqin.github.io/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao.html</loc>
+    
+    <lastmod>2022-03-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bowonqin.github.io/posts/redis-ji-chu-pian.html</loc>
     
     <lastmod>2022-03-13</lastmod>
@@ -388,6 +395,20 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://bowonqin.github.io/tags/MySQL/</loc>
+    <lastmod>2022-03-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bowonqin.github.io/tags/java%E4%B8%9A%E5%8A%A1/</loc>
+    <lastmod>2022-03-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -441,6 +462,20 @@
   
   <url>
     <loc>https://bowonqin.github.io/categories/Mysql%E8%BF%90%E7%BB%B4%E7%AF%87/</loc>
+    <lastmod>2022-03-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bowonqin.github.io/categories/java%E4%B8%9A%E5%8A%A1/</loc>
+    <lastmod>2022-03-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bowonqin.github.io/categories/java%E4%B8%9A%E5%8A%A1/MySQL%E6%80%9D%E8%80%83%E7%AF%87/</loc>
     <lastmod>2022-03-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -1,3 +1,4 @@
+https://bowonqin.github.io/posts/mongodb-kuai-su-ru-men.html
 https://bowonqin.github.io/posts/redis-shi-jian-pian.html
 https://bowonqin.github.io/posts/redis-ji-chu-pian.html
 https://bowonqin.github.io/posts/mysql-suo-yin-fang-mian-de-yi-xie-si-kao.html

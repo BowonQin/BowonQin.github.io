@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://bowonqin.github.io/posts/shu-zhi-ji-suan-de-jing-du-wen-ti.html</loc>
+    <lastmod>2022-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://bowonqin.github.io/posts/cheng-xu-zhong-de-pan-deng-wen-ti-zhong-de-yi-xie-si-kao.html</loc>
+    <lastmod>2022-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://bowonqin.github.io/posts/springcloud-fu-wu-zhu-ce-yu-fa-xian.html</loc>
+    <lastmod>2022-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://bowonqin.github.io/posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</loc>
+    <lastmod>2022-03-16</lastmod>
+  </url>
+  <url>
     <loc>https://bowonqin.github.io/posts/mongodb-kuai-su-ru-men.html</loc>
     <lastmod>2022-03-14</lastmod>
   </url>
@@ -43,10 +59,6 @@
   <url>
     <loc>https://bowonqin.github.io/posts/asdas.html</loc>
     <lastmod>2022-01-02</lastmod>
-  </url>
-  <url>
-    <loc>https://bowonqin.github.io/posts/spring-cloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</loc>
-    <lastmod>2022-01-01</lastmod>
   </url>
   <url>
     <loc>https://bowonqin.github.io/posts/b2440e5a.html</loc>

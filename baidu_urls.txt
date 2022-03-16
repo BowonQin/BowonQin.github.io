@@ -1,3 +1,6 @@
+https://bowonqin.github.io/posts/shu-zhi-ji-suan-de-jing-du-wen-ti.html
+https://bowonqin.github.io/posts/cheng-xu-zhong-de-pan-deng-wen-ti-zhong-de-yi-xie-si-kao.html
+https://bowonqin.github.io/posts/springcloud-fu-wu-zhu-ce-yu-fa-xian.html
 https://bowonqin.github.io/posts/mongodb-kuai-su-ru-men.html
 https://bowonqin.github.io/posts/redis-shi-jian-pian.html
 https://bowonqin.github.io/posts/redis-ji-chu-pian.html
@@ -9,7 +12,7 @@ https://bowonqin.github.io/posts/mysql-yun-wei-pian.html
 https://bowonqin.github.io/posts/518e617c.html
 https://bowonqin.github.io/posts/mysql-jin-jie-pian.html
 https://bowonqin.github.io/posts/asdas.html
-https://bowonqin.github.io/posts/spring-cloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html
+https://bowonqin.github.io/posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html
 https://bowonqin.github.io/posts/asdas.html
 https://bowonqin.github.io/posts/b2440e5a.html
 https://bowonqin.github.io/posts/java-ji-he-arraylist.html

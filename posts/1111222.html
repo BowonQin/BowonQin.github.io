@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
 </head>
 
 
@@ -598,7 +598,7 @@
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>2） 创建数据库表</p>
-<img src="/posts/1111222/image-20211217152912896.png" class="">
+<img src="/posts/1111222/image-20211217152912896.png" class>
 
 <p>3）编写User实体</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
@@ -995,7 +995,7 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.mybatis.builder<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="Properties标签"><a href="#Properties标签" class="headerlink" title="Properties标签"></a>Properties标签</h3><p>实际开发中，习惯将数据源的配置信息单独抽取成一个properties文件，该标签可以加载额外配置的properties文件</p>
-<img src="/posts/1111222/image-20211218100416984.png" class="">
+<img src="/posts/1111222/image-20211218100416984.png" class>
 
 
 <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -1137,14 +1137,14 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 
 <hr>
 <h1 id="Mybatis复杂映射开发"><a href="#Mybatis复杂映射开发" class="headerlink" title="Mybatis复杂映射开发"></a>Mybatis复杂映射开发</h1><h2 id="一对一查询"><a href="#一对一查询" class="headerlink" title="一对一查询"></a>一对一查询</h2><h3 id="一对一查询模型"><a href="#一对一查询模型" class="headerlink" title="一对一查询模型"></a>一对一查询模型</h3><p>用户表和订单表的关系为，一个用户有多个订单，一个订单只从属于一个用户。一对一查询的需求：查询一个订单，与此同时查询出该订单所属的用户</p>
-<img src="/posts/1111222/image-20211218171801758.png" class="">
+<img src="/posts/1111222/image-20211218171801758.png" class>
 
 
 <h3 id="一对一查询语句"><a href="#一对一查询语句" class="headerlink" title="一对一查询语句"></a>一对一查询语句</h3><p>对应的sql语句：</p>
 <pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">select * from orders o,user u where o.uid=u.id;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>查询的结果如下：</p>
-<img src="/posts/1111222/image-20211218171912816.png" class="">
+<img src="/posts/1111222/image-20211218171912816.png" class>
 
 <h3 id="创建Order和User实体"><a href="#创建Order和User实体" class="headerlink" title="创建Order和User实体"></a>创建Order和User实体</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Order</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
@@ -1203,7 +1203,7 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span><span class="token punctuation">,</span>o<span class="token punctuation">.</span>id oid <span class="token keyword">from</span> <span class="token keyword">user</span> u <span class="token keyword">left</span> <span class="token keyword">join</span> orders o <span class="token keyword">on</span> u<span class="token punctuation">.</span>id<span class="token operator">=</span>o<span class="token punctuation">.</span>uid<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>查询的结果如下：</p>
-<img src="/posts/1111222/image-20211218191604776.png" class="">
+<img src="/posts/1111222/image-20211218191604776.png" class>
 
 
 <h3 id="修改User实体"><a href="#修改User实体" class="headerlink" title="修改User实体"></a>修改User实体</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
@@ -1252,7 +1252,7 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 
 <h2 id="多对多查询"><a href="#多对多查询" class="headerlink" title="多对多查询"></a>多对多查询</h2><h3 id="多对多查询模型"><a href="#多对多查询模型" class="headerlink" title="多对多查询模型"></a>多对多查询模型</h3><p>用户表和角色表的关系为，一个用户有多个角色，一个角色被多个用户使用</p>
 <p>多对多查询的需求：查询用户同时查询出该用户的所有角色</p>
-<img src="/posts/1111222/image-20211218200849998.png" class="">
+<img src="/posts/1111222/image-20211218200849998.png" class>
 
 <h3 id="多对多查询语句"><a href="#多对多查询语句" class="headerlink" title="多对多查询语句"></a>多对多查询语句</h3><p>对应的sql语句：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
@@ -1263,7 +1263,7 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> sys_role r <span class="token keyword">ON</span> ur<span class="token punctuation">.</span>roleid <span class="token operator">=</span> r<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>查询结果如下</p>
-<img src="/posts/1111222/image-20211218201211366.png" class="">
+<img src="/posts/1111222/image-20211218201211366.png" class>
 
 
 <h3 id="创建Role实体，修改User实体"><a href="#创建Role实体，修改User实体" class="headerlink" title="创建Role实体，修改User实体"></a>创建Role实体，修改User实体</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
@@ -1373,12 +1373,12 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 
 
 <h2 id="MyBatis的注解实现复杂映射开发"><a href="#MyBatis的注解实现复杂映射开发" class="headerlink" title="MyBatis的注解实现复杂映射开发"></a>MyBatis的注解实现复杂映射开发</h2><p>实现复杂关系映射之前我们可以在映射文件中通过配置来实现，使用注解开发后，我们可以使用@Results注解，@Result注解，@One注解，@Many注解组合完成复杂关系的配置</p>
-<img src="/posts/1111222/image-20211218220439959.png" class="">
+<img src="/posts/1111222/image-20211218220439959.png" class>
 
 
 <h2 id="一对一查询-1"><a href="#一对一查询-1" class="headerlink" title="一对一查询"></a>一对一查询</h2><h3 id="一对一查询的模型"><a href="#一对一查询的模型" class="headerlink" title="一对一查询的模型"></a>一对一查询的模型</h3><p>用户表和订单表的关系为，一个用户有多个订单，一个订单只从属于一个用户</p>
 <p>一对一查询的需求：查询一个订单，与此同时查询出该订单所属的用户</p>
-<img src="/posts/1111222/image-20211218171801758.png" class="">
+<img src="/posts/1111222/image-20211218171801758.png" class>
 
 
 <h3 id="一对一查询的语句"><a href="#一对一查询的语句" class="headerlink" title="一对一查询的语句"></a>一对一查询的语句</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> orders<span class="token punctuation">;</span>
@@ -1503,7 +1503,7 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
 
 <h2 id="多对多查询-1"><a href="#多对多查询-1" class="headerlink" title="多对多查询"></a>多对多查询</h2><h3 id="多对多查询模型-1"><a href="#多对多查询模型-1" class="headerlink" title="多对多查询模型"></a>多对多查询模型</h3><p>用户表和角色表的关系为，一个用户有多个角色，一个角色被多个用户使用</p>
 <p>多对多查询的需求：查询用户同时查询出该用户的所有角色</p>
-<img src="/posts/1111222/image-20211218200849998.png" class="">
+<img src="/posts/1111222/image-20211218200849998.png" class>
 
 
 <h3 id="多对多查询语句-1"><a href="#多对多查询语句-1" class="headerlink" title="多对多查询语句"></a>多对多查询语句</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token keyword">user</span><span class="token punctuation">;</span>
@@ -1681,19 +1681,19 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/niuke100.html">
+                <a href="/posts/javabase.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928015500.jpg" class="responsive-img" alt="牛客高频面试题">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928021245.jpg" class="responsive-img" alt="java基础(面经)">
                         
-                        <span class="card-title">牛客高频面试题</span>
+                        <span class="card-title">java基础(面经)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            牛客高频面试题
+                            java基础(面经)
                         
                     </div>
                     <div class="publish-info">
@@ -1715,12 +1715,12 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%89%9B%E5%AE%A2/">
-                        <span class="chip bg-color">牛客</span>
-                    </a>
-                    
                     <a href="/tags/%E9%9D%A2%E8%AF%95/">
                         <span class="chip bg-color">面试</span>
+                    </a>
+                    
+                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">java基础</span>
                     </a>
                     
                 </div>
@@ -1731,22 +1731,22 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/posts/javabase.html">
+                <a href="/posts/1111222.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928021245.jpg" class="responsive-img" alt="java基础(面经)">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/posts/20200928020152.jpg" class="responsive-img" alt="Mybatis(基础)">
                         
-                        <span class="card-title">java基础(面经)</span>
+                        <span class="card-title">Mybatis(基础)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            java基础(面经)
+                            Mybatis(基础)
                         
                     </div>
                     <div class="publish-info">
@@ -1757,23 +1757,20 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9D%A2%E8%AF%95%E7%AF%87/" class="post-category">
-                                    面试篇
+                            <a href="/categories/SSM%E7%AF%87/" class="post-category">
+                                    SSM篇
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
-                        <span class="chip bg-color">面试</span>
-                    </a>
-                    
-                    <a href="/tags/java%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">java基础</span>
+                    <a href="/tags/Mybatis/">
+                        <span class="chip bg-color">Mybatis</span>
                     </a>
                     
                 </div>
@@ -1959,7 +1956,7 @@ sqlSession<span class="token punctuation">.</span><span class="token function">c
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">128.8k</span>&nbsp;字
+                class="white-color">135.8k</span>&nbsp;字
             
             
             

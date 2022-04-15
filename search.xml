@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>SpringCloud-消息中间件(RabbitMQ)</title>
+      <link href="posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq.html"/>
+      <url>posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文为b站黑马程序员SpringCloud的学习笔记，网址为:<a href="https://www.bilibili.com/video/BV1LQ4y127n4?from=search&amp;seid=17377467453527947475&amp;spm_id_from=333.337.0.0">SpringCloud</a></p><h2 id="SpringCloud-消息中间件-RabbitMQ"><a href="#SpringCloud-消息中间件-RabbitMQ" class="headerlink" title="SpringCloud-消息中间件(RabbitMQ)"></a>SpringCloud-消息中间件(RabbitMQ)</h2><h2 id="1-初识MQ"><a href="#1-初识MQ" class="headerlink" title="1.初识MQ"></a>1.初识MQ</h2><h3 id="1-1-同步和异步通讯"><a href="#1-1-同步和异步通讯" class="headerlink" title="1.1 同步和异步通讯"></a>1.1 同步和异步通讯</h3><p>微服务间通讯有同步和异步两种方式：</p><p>同步通讯：就像打电话，需要实时响应。</p><p>异步通讯：就像发邮件，不需要马上回复。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SpringCloud </category>
+          
+          <category> 消息中间件 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RabbitMQ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SpringCloud-网关</title>
       <link href="posts/springcloud-wang-guan.html"/>
       <url>posts/springcloud-wang-guan.html</url>
@@ -426,14 +453,12 @@
       <link href="posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html"/>
       <url>posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</url>
       
-        <content type="html"><![CDATA[<h2 id="spring-cloud-gateway-自定义全局过滤器不生效"><a href="#spring-cloud-gateway-自定义全局过滤器不生效" class="headerlink" title="spring cloud gateway 自定义全局过滤器不生效"></a>spring cloud gateway 自定义全局过滤器不生效</h2><p>springboot的启动类不在包的最外层，导致过滤器的@Component注解不生效，也就是bean没有在spring中实例化。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="spring-cloud-gateway-自定义全局过滤器不生效"><a href="#spring-cloud-gateway-自定义全局过滤器不生效" class="headerlink" title="spring cloud gateway 自定义全局过滤器不生效"></a>spring cloud gateway 自定义全局过滤器不生效</h2><p>springboot的启动类不在包的最外层，导致过滤器的@Component注解不生效，也就是bean没有在spring中实例化。</p>]]></content>
       
       
       <categories>
           
           <category> 常见问题 </category>
-          
-          <category> SpringCloud </category>
           
       </categories>
       

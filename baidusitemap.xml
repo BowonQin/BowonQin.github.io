@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://bowonqin.github.io/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq.html</loc>
+    <lastmod>2022-04-15</lastmod>
+  </url>
+  <url>
     <loc>https://bowonqin.github.io/posts/springcloud-wang-guan.html</loc>
+    <lastmod>2022-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://bowonqin.github.io/posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</loc>
     <lastmod>2022-04-15</lastmod>
   </url>
   <url>
@@ -18,10 +26,6 @@
   </url>
   <url>
     <loc>https://bowonqin.github.io/posts/springcloud-fu-wu-zhu-ce-yu-fa-xian.html</loc>
-    <lastmod>2022-03-16</lastmod>
-  </url>
-  <url>
-    <loc>https://bowonqin.github.io/posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</loc>
     <lastmod>2022-03-16</lastmod>
   </url>
   <url>

@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bowonqin.github.io/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq.html</loc>
+    
+    <lastmod>2022-04-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bowonqin.github.io/posts/springcloud-wang-guan.html</loc>
+    
+    <lastmod>2022-04-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bowonqin.github.io/posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</loc>
     
     <lastmod>2022-04-15</lastmod>
     
@@ -31,13 +45,6 @@
   
   <url>
     <loc>https://bowonqin.github.io/posts/springcloud-fu-wu-zhu-ce-yu-fa-xian.html</loc>
-    
-    <lastmod>2022-03-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bowonqin.github.io/posts/springcloud-gateway-zi-ding-yi-quan-ju-guo-lu-qi-bu-sheng-xiao-wen-ti.html</loc>
     
     <lastmod>2022-03-16</lastmod>
     
@@ -472,6 +479,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://bowonqin.github.io/tags/RabbitMQ/</loc>
+    <lastmod>2022-04-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -552,13 +566,6 @@
   </url>
   
   <url>
-    <loc>https://bowonqin.github.io/categories/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/SpringCloud/</loc>
-    <lastmod>2022-04-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bowonqin.github.io/categories/SpringCloud/</loc>
     <lastmod>2022-04-15</lastmod>
     <changefreq>daily</changefreq>
@@ -567,6 +574,13 @@
   
   <url>
     <loc>https://bowonqin.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2022-04-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bowonqin.github.io/categories/SpringCloud/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
     <lastmod>2022-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

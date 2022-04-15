@@ -687,8 +687,6 @@
 <h2 id="1-4-过滤器工厂"><a href="#1-4-过滤器工厂" class="headerlink" title="1.4 过滤器工厂"></a>1.4 过滤器工厂</h2><p>GatewayFilter是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理：</p>
 <img src="/posts/springcloud-wang-guan/image-20210714212312871.png" class="">
 
-
-
 <h3 id="1-4-1-路由过滤器的种类"><a href="#1-4-1-路由过滤器的种类" class="headerlink" title="1.4.1 路由过滤器的种类"></a>1.4.1 路由过滤器的种类</h3><p>Spring提供了31种不同的路由过滤器工厂。例如：</p>
 <table>
 <thead>
@@ -734,8 +732,6 @@
         <span class="token key atrule">filters</span><span class="token punctuation">:</span> <span class="token comment"># 过滤器</span>
         <span class="token punctuation">-</span> AddRequestHeader=Truth<span class="token punctuation">,</span> Itcast is freaking awesome<span class="token tag">!</span> <span class="token comment"># 添加请求头</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
 <h3 id="1-4-3-默认过滤器"><a href="#1-4-3-默认过滤器" class="headerlink" title="1.4.3.默认过滤器"></a>1.4.3.默认过滤器</h3><p>如果要对所有的路由都生效，则可以将过滤器工厂写到default下。格式如下：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
@@ -747,8 +743,6 @@
         <span class="token punctuation">-</span> Path=/user/<span class="token important">**</span>
       <span class="token key atrule">default-filters</span><span class="token punctuation">:</span> <span class="token comment"># 默认过滤项</span>
       <span class="token punctuation">-</span> AddRequestHeader=Truth<span class="token punctuation">,</span> Itcast is freaking awesome<span class="token tag">!</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
 
 <h3 id="1-4-4-总结"><a href="#1-4-4-总结" class="headerlink" title="1.4.4.总结"></a>1.4.4.总结</h3><p>过滤器的作用是什么？</p>
 <p>① 对路由的请求或响应做加工处理，比如添加请求头</p>
@@ -771,12 +765,9 @@
 
 <p>在filter中编写自定义逻辑，可以实现下列功能：</p>
 <ul>
-<li><p>登录状态判断</p>
-</li>
-<li><p>权限校验</p>
-</li>
-<li><p>请求限流等</p>
-</li>
+<li>登录状态判断</li>
+<li>权限校验</li>
+<li>请求限流等</li>
 </ul>
 <h3 id="1-5-2-自定义全局过滤器"><a href="#1-5-2-自定义全局过滤器" class="headerlink" title="1.5.2 自定义全局过滤器"></a>1.5.2 自定义全局过滤器</h3><p>需求：定义全局过滤器，拦截请求，判断请求的参数是否满足下面条件：</p>
 <ul>
@@ -817,8 +808,6 @@
         <span class="token keyword">return</span> exchange<span class="token punctuation">.</span><span class="token function">getResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setComplete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
 
 <h3 id="1-5-3-过滤器执行顺序"><a href="#1-5-3-过滤器执行顺序" class="headerlink" title="1.5.3.过滤器执行顺序"></a>1.5.3.过滤器执行顺序</h3><p>请求进入网关会碰到三类过滤器：当前路由的过滤器、DefaultFilter、GlobalFilter</p>
 <p>请求路由后，会将当前路由过滤器和DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器：</p>

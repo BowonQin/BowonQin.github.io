@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Bowon Qin" type="application/atom+xml">
 </head>
 
 
@@ -499,21 +499,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-16
+                    2022-04-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.9k
+                    12.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    27 分
+                    50 分
                 </div>
                 
 
@@ -535,11 +535,11 @@
 <h2 id="SpringCloud-消息中间件-RabbitMQ"><a href="#SpringCloud-消息中间件-RabbitMQ" class="headerlink" title="SpringCloud-消息中间件(RabbitMQ)"></a>SpringCloud-消息中间件(RabbitMQ)</h2><h2 id="1-初识MQ"><a href="#1-初识MQ" class="headerlink" title="1.初识MQ"></a>1.初识MQ</h2><h3 id="1-1-同步和异步通讯"><a href="#1-1-同步和异步通讯" class="headerlink" title="1.1 同步和异步通讯"></a>1.1 同步和异步通讯</h3><p>微服务间通讯有同步和异步两种方式：</p>
 <p>同步通讯：就像打电话，需要实时响应。</p>
 <p>异步通讯：就像发邮件，不需要马上回复。</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717161939695.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717161939695.png" class="">
 
 <p>两种方式各有优劣，打电话可以立即得到响应，但是你却不能跟多个人同时通话。发送邮件可以同时与多个人收发邮件，但是往往响应会有延迟。</p>
 <h4 id="1-1-1-同步通讯"><a href="#1-1-1-同步通讯" class="headerlink" title="1.1.1 同步通讯"></a>1.1.1 同步通讯</h4><p>Feign调用就属于同步方式，虽然调用可以实时得到结果，但存在下面的问题：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717162004285.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717162004285.png" class="">
 
 <p>总结：</p>
 <p>同步调用的优点：</p>
@@ -558,7 +558,7 @@
 <p>在事件模式中，支付服务是事件发布者（publisher），在支付完成后只需要发布一个支付成功的事件（event），事件中带上订单id。</p>
 <p>订单服务和物流服务是事件订阅者（Consumer），订阅支付成功的事件，监听到事件后完成自己业务即可。</p>
 <p>为了解除事件发布者与订阅者之间的耦合，两者并不是直接通信，而是有一个中间人（Broker）。发布者发布事件到Broker，不关心谁来订阅事件。订阅者从Broker订阅事件，不关心谁发来的消息。</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210422095356088.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210422095356088.png" class="">
 
 <p>Broker 是一个像数据总线一样的东西，所有的服务要接收数据和发送数据都发到这个总线上，这个总线就像协议一样，让服务间的通讯变得标准和可控。</p>
 <p>好处：</p>
@@ -681,7 +681,7 @@
 <li>镜像模式：与普通模式不同，队列会在各个mq的镜像节点之间同步，因此你连接到任何一个镜像节点，均可获取到消息。而且如果一个节点宕机，并不会导致数据丢失。不过，这种方式增加了数据同步的带宽消耗。</li>
 </ul>
 <p>MQ的基本结构</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717162752376.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717162752376.png" class="">
 
 <p>RabbitMQ中的一些角色：</p>
 <ul>
@@ -692,10 +692,10 @@
 <li>virtualHost：虚拟主机，隔离不同租户的exchange、queue、消息的隔离</li>
 </ul>
 <h3 id="2-2-RabbitMQ消息模型"><a href="#2-2-RabbitMQ消息模型" class="headerlink" title="2.2.RabbitMQ消息模型"></a>2.2.RabbitMQ消息模型</h3><p>RabbitMQ官方提供了5个不同的Demo示例，对应了不同的消息模型：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717163332646.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717163332646.png" class="">
 
 <h3 id="2-3-入门案例"><a href="#2-3-入门案例" class="headerlink" title="2.3 入门案例"></a>2.3 入门案例</h3><p>简单队列模式的模型图：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717163434647.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717163434647.png" class="">
 
 <p>官方的HelloWorld是基于最基础的消息队列模型来实现的，只包括三个角色：</p>
 <ul>
@@ -835,7 +835,7 @@ public class ConsumerTest {
 </ol>
 <h2 id="3-SpringAMQP"><a href="#3-SpringAMQP" class="headerlink" title="3. SpringAMQP"></a>3. SpringAMQP</h2><p>SpringAMQP是基于RabbitMQ封装的一套模板，并且还利用SpringBoot对其实现了自动装配，使用起来非常方便。</p>
 <p>SpringAmqp的官方地址：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-amqp">https://spring.io/projects/spring-amqp</a></p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717164024967.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717164024967.png" class="">
 
 <p>SpringAMQP提供了三个功能：</p>
 <ul>
@@ -915,7 +915,7 @@ public class ConsumerTest {
 
 <h4 id="3-1-3-测试"><a href="#3-1-3-测试" class="headerlink" title="3.1.3 测试"></a>3.1.3 测试</h4><p>启动consumer服务，然后在publisher服务中运行测试代码，发送MQ消息</p>
 <h3 id="3-2-WorkQueue"><a href="#3-2-WorkQueue" class="headerlink" title="3.2 WorkQueue"></a>3.2 WorkQueue</h3><p>Work queues，也被称为（Task queues），任务模型。简单来说就是<strong>让多个消费者绑定到一个队列，共同消费队列中的消息</strong>。</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717164238910.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717164238910.png" class="">
 
 <p>当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。</p>
 <p>此时就可以使用work 模型，多个消费者共同处理消息处理，速度就能大大提高了。</p>
@@ -970,7 +970,7 @@ public class ConsumerTest {
 <li>通过设置prefetch来控制消费者预取的消息数量</li>
 </ul>
 <h3 id="3-3-发布-订阅"><a href="#3-3-发布-订阅" class="headerlink" title="3.3 发布/订阅"></a>3.3 发布/订阅</h3><p>发布订阅的模型如图：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165309625.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165309625.png" class="">
 
 <p>可以看到，在订阅模型中，多了一个exchange角色，而且过程略有变化：</p>
 <ul>
@@ -990,7 +990,7 @@ public class ConsumerTest {
 </ul>
 <p><strong>Exchange（交换机）只负责转发消息，不具备存储消息的能力</strong>，因此如果没有任何队列与Exchange绑定，或者没有符合路由规则的队列，那么消息会丢失！</p>
 <h3 id="3-4-Fanout"><a href="#3-4-Fanout" class="headerlink" title="3.4 Fanout"></a>3.4 Fanout</h3><p>Fanout，英文翻译是扇出，我觉得在MQ中叫广播更合适。</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165438225.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165438225.png" class="">
 
 <p>在广播模式下，消息发送流程是这样的：</p>
 <ul>
@@ -1005,10 +1005,10 @@ public class ConsumerTest {
 <li>创建一个交换机 itcast.fanout，类型是Fanout</li>
 <li>创建两个队列fanout.queue1和fanout.queue2，绑定到交换机itcast.fanout</li>
 </ul>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165509466.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165509466.png" class="">
 
 <h4 id="3-4-1-声明队列和交换机"><a href="#3-4-1-声明队列和交换机" class="headerlink" title="3.4.1 声明队列和交换机"></a>3.4.1 声明队列和交换机</h4><p>Spring提供了一个接口Exchange，来表示所有不同类型的交换机：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165552676.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717165552676.png" class="">
 
 <p>在consumer中创建一个类，声明队列和交换机：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">cn<span class="token punctuation">.</span>itcast<span class="token punctuation">.</span>mq<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span>
@@ -1099,7 +1099,7 @@ public class ConsumerTest {
 <li>Binding</li>
 </ul>
 <h3 id="3-5-Direct"><a href="#3-5-Direct" class="headerlink" title="3.5 Direct"></a>3.5 Direct</h3><p>在Fanout模式中，一条消息，会被所有订阅的队列都消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到Direct类型的Exchange。</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170041447.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170041447.png" class="">
 
 <p> 在Direct模型下：</p>
 <ul>
@@ -1113,7 +1113,7 @@ public class ConsumerTest {
 <li>在consumer服务中，编写两个消费者方法，分别监听direct.queue1和direct.queue2</li>
 <li>在publisher中编写测试方法，向itcast. direct发送消息</li>
 </ol>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170223317.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170223317.png" class="">
 
 <h4 id="3-5-1-基于注解声明队列和交换机"><a href="#3-5-1-基于注解声明队列和交换机" class="headerlink" title="3.5.1 基于注解声明队列和交换机"></a>3.5.1 基于注解声明队列和交换机</h4><p>基于@Bean的方式声明队列和交换机比较麻烦，Spring还提供了基于注解方式来声明。</p>
 <p>在consumer的SpringRabbitListener中添加两个消费者，同时基于注解来声明队列和交换机：</p>
@@ -1167,7 +1167,7 @@ public class ConsumerTest {
 <p><code>item.*</code>：只能匹配<code>item.spu</code></p>
 <p>​     </p>
 <p>图示：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170705380.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170705380.png" class="">
 
 <p>解释：</p>
 <ul>
@@ -1184,7 +1184,7 @@ public class ConsumerTest {
 <li><p>在publisher中编写测试方法，向itcast. topic发送消息</p>
 </li>
 </ol>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170829229.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717170829229.png" class="">
 
 <h4 id="3-6-2-消息发送"><a href="#3-6-2-消息发送" class="headerlink" title="3.6.2 消息发送"></a>3.6.2 消息发送</h4><p>在publisher服务的SpringAmqpTest类中添加测试方法：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
@@ -1227,7 +1227,7 @@ public class ConsumerTest {
 <li><code>*</code>：代表1个词</li>
 </ul>
 <h3 id="3-7-消息转换器"><a href="#3-7-消息转换器" class="headerlink" title="3.7 消息转换器"></a>3.7 消息转换器</h3><p>之前说过，Spring会把你发送的消息序列化为字节发送给MQ，接收消息的时候，还会把字节反序列化为Java对象。</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20200525170410401.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20200525170410401.png" class="">
 
 <p>只不过，默认情况下Spring采用的序列化方式是JDK序列化。众所周知，JDK序列化存在下列问题：</p>
 <ul>
@@ -1249,7 +1249,7 @@ public class ConsumerTest {
 
 <p>停止consumer服务</p>
 <p>发送消息后查看控制台：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210422232835363.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210422232835363.png" class="">
 
 <h4 id="3-7-2-配置JSON转换器"><a href="#3-7-2-配置JSON转换器" class="headerlink" title="3.7.2 配置JSON转换器"></a>3.7.2 配置JSON转换器</h4><p>显然，JDK序列化方式并不合适。我们希望消息体的体积更小、可读性更高，因此可以使用JSON方式来做序列化和反序列化。</p>
 <p>在publisher和consumer两个服务中都引入依赖：</p>
@@ -1269,10 +1269,10 @@ public class ConsumerTest {
 
 
 <h2 id="4-消息可靠性"><a href="#4-消息可靠性" class="headerlink" title="4. 消息可靠性"></a>4. 消息可靠性</h2><p>消息队列在使用过程中，面临着很多实际问题需要思考：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718155003157.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718155003157.png" class="">
 
 <p>消息从发送，到消费者接收，会经理多个过程：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718155059371.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718155059371.png" class="">
 
 <p>其中的每一步都可能导致消息丢失，常见的丢失原因包括：</p>
 <ul>
@@ -1304,10 +1304,10 @@ public class ConsumerTest {
 </ul>
 </li>
 </ul>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718160907166.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718160907166.png" class="">
 
 <p>注意：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718161707992.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718161707992.png" class="">
 
 <h4 id="4-1-1-修改配置"><a href="#4-1-1-修改配置" class="headerlink" title="4.1.1 修改配置"></a>4.1.1 修改配置</h4><p>首先，修改publisher服务中的application.yml文件，添加下面的内容：</p>
 <pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
@@ -1412,7 +1412,7 @@ public class ConsumerTest {
 
 <p>事实上，默认情况下，由SpringAMQP声明的交换机都是持久化的。</p>
 <p>可以在RabbitMQ控制台看到持久化的交换机都会带上<code>D</code>的标示：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718164412450.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718164412450.png" class="">
 
 <h4 id="4-2-2-队列持久化"><a href="#4-2-2-队列持久化" class="headerlink" title="4.2.2 队列持久化"></a>4.2.2 队列持久化</h4><p>RabbitMQ中队列默认是非持久化的，mq重启后就丢失。</p>
 <p>SpringAMQP中可以通过代码指定交换机持久化：</p>
@@ -1424,14 +1424,14 @@ public class ConsumerTest {
 
 <p>事实上，默认情况下，由SpringAMQP声明的队列都是持久化的。</p>
 <p>可以在RabbitMQ控制台看到持久化的队列都会带上<code>D</code>的标示：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718164729543.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718164729543.png" class="">
 
 <h4 id="4-2-3-消息持久化"><a href="#4-2-3-消息持久化" class="headerlink" title="4.2.3 消息持久化"></a>4.2.3 消息持久化</h4><p>利用SpringAMQP发送消息时，可以设置消息的属性（MessageProperties），指定delivery-mode：</p>
 <ul>
 <li>1：非持久化</li>
 <li>2：持久化</li>
 </ul>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718165100016.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718165100016.png" class="">
 
 <p>默认情况下，SpringAMQP发出的任何消息都是持久化的，不用特意指定。</p>
 <h3 id="4-3-消费者消息确认"><a href="#4-3-消费者消息确认" class="headerlink" title="4.3 消费者消息确认"></a>4.3 消费者消息确认</h3><p>RabbitMQ是<strong>阅后即焚</strong>机制，RabbitMQ确认消息被消费者消费后会立刻删除。</p>
@@ -1482,10 +1482,687 @@ public class ConsumerTest {
 
 
 <p>在异常位置打断点，再次发送消息，程序卡在断点时，可以发现此时消息状态为unack（未确定状态）：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718171705383.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718171705383.png" class="">
 
 <p>抛出异常后，因为Spring会自动返回nack，所以消息恢复至Ready状态，并且没有被RabbitMQ删除：</p>
-<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718171759179.png" class>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718171759179.png" class="">
+
+<h3 id="4-4-消费失败重试机制"><a href="#4-4-消费失败重试机制" class="headerlink" title="4.4 消费失败重试机制"></a>4.4 消费失败重试机制</h3><p>当消费者出现异常后，消息会不断requeue（重入队）到队列，再重新发送给消费者，然后再次异常，再次requeue，无限循环，导致mq的消息处理飙升，带来不必要的压力：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718172746378.png" class="">
+
+<h4 id="4-4-1-本地重试"><a href="#4-4-1-本地重试" class="headerlink" title="4.4.1 本地重试"></a>4.4.1 本地重试</h4><p>我们可以利用Spring的retry机制，在消费者出现异常时利用本地重试，而不是无限制的requeue到mq队列。</p>
+<p>修改consumer服务的application.yml文件，添加内容：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
+    <span class="token key atrule">listener</span><span class="token punctuation">:</span>
+      <span class="token key atrule">simple</span><span class="token punctuation">:</span>
+        <span class="token key atrule">retry</span><span class="token punctuation">:</span>
+          <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># 开启消费者失败重试</span>
+          <span class="token key atrule">initial-interval</span><span class="token punctuation">:</span> <span class="token number">1000</span> <span class="token comment"># 初识的失败等待时长为1秒</span>
+          <span class="token key atrule">multiplier</span><span class="token punctuation">:</span> <span class="token number">1</span> <span class="token comment"># 失败的等待时长倍数，下次等待时长 = multiplier * last-interval</span>
+          <span class="token key atrule">max-attempts</span><span class="token punctuation">:</span> <span class="token number">3</span> <span class="token comment"># 最大重试次数</span>
+          <span class="token key atrule">stateless</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># true无状态；false有状态。如果业务中包含事务，这里改为false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>重启consumer服务，重复之前的测试。可以发现：</p>
+<ul>
+<li>在重试3次后，SpringAMQP会抛出异常AmqpRejectAndDontRequeueException，说明本地重试触发了</li>
+<li>查看RabbitMQ控制台，发现消息被删除了，说明最后SpringAMQP返回的是ack，mq删除消息了</li>
+</ul>
+<p>结论：</p>
+<ul>
+<li>开启本地重试时，消息处理过程中抛出异常，不会requeue到队列，而是在消费者本地重试</li>
+<li>重试达到最大次数后，Spring会返回ack，消息会被丢弃</li>
+</ul>
+<h4 id="4-4-2-失败策略"><a href="#4-4-2-失败策略" class="headerlink" title="4.4.2 失败策略"></a>4.4.2 失败策略</h4><p>在之前的测试中，达到最大重试次数后，消息会被丢弃，这是由Spring内部机制决定的。</p>
+<p>在开启重试模式后，重试次数耗尽，如果消息依然失败，则需要有MessageRecovery接口来处理，它包含三种不同的实现：</p>
+<ul>
+<li><p>RejectAndDontRequeueRecoverer：重试耗尽后，直接reject，丢弃消息。默认就是这种方式</p>
+</li>
+<li><p>ImmediateRequeueMessageRecoverer：重试耗尽后，返回nack，消息重新入队</p>
+</li>
+<li><p>RepublishMessageRecoverer：重试耗尽后，将失败消息投递到指定的交换机</p>
+</li>
+</ul>
+<p>比较优雅的一种处理方案是RepublishMessageRecoverer，失败后将消息投递到一个指定的，专门存放异常消息的队列，后续由人工集中处理。</p>
+<p>1）在consumer服务中定义处理失败消息的交换机和队列</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">DirectExchange</span> <span class="token function">errorMessageExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DirectExchange</span><span class="token punctuation">(</span><span class="token string">"error.direct"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Queue</span> <span class="token function">errorQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token string">"error.queue"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Binding</span> <span class="token function">errorBinding</span><span class="token punctuation">(</span><span class="token class-name">Queue</span> errorQueue<span class="token punctuation">,</span> <span class="token class-name">DirectExchange</span> errorMessageExchange<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">BindingBuilder</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>errorQueue<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span>errorMessageExchange<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">with</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>2）定义一个RepublishMessageRecoverer，关联队列和交换机</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">MessageRecoverer</span> <span class="token function">republishMessageRecoverer</span><span class="token punctuation">(</span><span class="token class-name">RabbitTemplate</span> rabbitTemplate<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RepublishMessageRecoverer</span><span class="token punctuation">(</span>rabbitTemplate<span class="token punctuation">,</span> <span class="token string">"error.direct"</span><span class="token punctuation">,</span> <span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>完整代码：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">cn<span class="token punctuation">.</span>itcast<span class="token punctuation">.</span>mq<span class="token punctuation">.</span>config</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">Binding</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">BindingBuilder</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">DirectExchange</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">Queue</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>rabbit<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span><span class="token class-name">RabbitTemplate</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>rabbit<span class="token punctuation">.</span>retry<span class="token punctuation">.</span></span><span class="token class-name">MessageRecoverer</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>amqp<span class="token punctuation">.</span>rabbit<span class="token punctuation">.</span>retry<span class="token punctuation">.</span></span><span class="token class-name">RepublishMessageRecoverer</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ErrorMessageConfig</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">DirectExchange</span> <span class="token function">errorMessageExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DirectExchange</span><span class="token punctuation">(</span><span class="token string">"error.direct"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">Queue</span> <span class="token function">errorQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token string">"error.queue"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">Binding</span> <span class="token function">errorBinding</span><span class="token punctuation">(</span><span class="token class-name">Queue</span> errorQueue<span class="token punctuation">,</span> <span class="token class-name">DirectExchange</span> errorMessageExchange<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">BindingBuilder</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>errorQueue<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span>errorMessageExchange<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">with</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">MessageRecoverer</span> <span class="token function">republishMessageRecoverer</span><span class="token punctuation">(</span><span class="token class-name">RabbitTemplate</span> rabbitTemplate<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RepublishMessageRecoverer</span><span class="token punctuation">(</span>rabbitTemplate<span class="token punctuation">,</span> <span class="token string">"error.direct"</span><span class="token punctuation">,</span> <span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-5-总结"><a href="#4-5-总结" class="headerlink" title="4.5 总结"></a>4.5 总结</h3><p>如何确保RabbitMQ消息的可靠性？</p>
+<ul>
+<li><p>开启生产者确认机制，确保生产者的消息能到达队列</p>
+</li>
+<li><p>开启持久化功能，确保消息未消费前在队列中不会丢失</p>
+</li>
+<li><p>开启消费者确认机制为auto，由spring确认消息处理成功后完成ack</p>
+</li>
+<li><p>开启消费者失败重试机制，并设置MessageRecoverer，多次重试失败后将消息投递到异常交换机，交由人工处理</p>
+</li>
+</ul>
+<h2 id="5-死信交换机"><a href="#5-死信交换机" class="headerlink" title="5. 死信交换机"></a>5. 死信交换机</h2><h3 id="5-1-初始死信交换机"><a href="#5-1-初始死信交换机" class="headerlink" title="5.1 初始死信交换机"></a>5.1 初始死信交换机</h3><h4 id="5-1-1-什么是死信交换机"><a href="#5-1-1-什么是死信交换机" class="headerlink" title="5.1.1 什么是死信交换机"></a>5.1.1 什么是死信交换机</h4><p>什么是死信？</p>
+<p>当一个队列中的消息满足下列情况之一时，可以成为死信（dead letter）：</p>
+<ul>
+<li>消费者使用basic.reject或 basic.nack声明消费失败，并且消息的requeue参数设置为false</li>
+<li>消息是一个过期消息，超时无人消费</li>
+<li>要投递的队列消息满了，无法投递</li>
+</ul>
+<p>如果这个包含死信的队列配置了<code>dead-letter-exchange</code>属性，指定了一个交换机，那么队列中的死信就会投递到这个交换机中，而这个交换机称为<strong>死信交换机</strong>（Dead Letter Exchange，检查DLX）。</p>
+<p>如图，一个消息被消费者拒绝了，变成了死信：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718174328383.png" class="">
+
+<p>因为simple.queue绑定了死信交换机 dl.direct，因此死信会投递给这个交换机：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718174416160.png" class="">
+
+<p>如果这个死信交换机也绑定了一个队列，则消息最终会进入这个存放死信的队列：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718174506856.png" class="">
+
+<p>另外，队列将死信投递给死信交换机时，必须知道两个信息：</p>
+<ul>
+<li>死信交换机名称</li>
+<li>死信交换机与死信队列绑定的RoutingKey</li>
+</ul>
+<p>这样才能确保投递的消息能到达死信交换机，并且正确的路由到死信队列。</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210821073801398.png" class="">
+
+<h4 id="5-1-2-利用死信交换机接收死信（拓展）"><a href="#5-1-2-利用死信交换机接收死信（拓展）" class="headerlink" title="5.1.2 利用死信交换机接收死信（拓展）"></a>5.1.2 利用死信交换机接收死信（拓展）</h4><p>在失败重试策略中，默认的RejectAndDontRequeueRecoverer会在本地重试次数耗尽后，发送reject给RabbitMQ，消息变成死信，被丢弃。</p>
+<p>我们可以给simple.queue添加一个死信交换机，给死信交换机绑定一个队列。这样消息变成死信后也不会丢弃，而是最终投递到死信交换机，路由到与死信交换机绑定的队列。</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718174506856.png" class="">
+
+<p>我们在consumer服务中，定义一组死信交换机、死信队列：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 声明普通的 simple.queue队列，并且为其指定死信交换机：dl.direct</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Queue</span> <span class="token function">simpleQueue2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">QueueBuilder</span><span class="token punctuation">.</span><span class="token function">durable</span><span class="token punctuation">(</span><span class="token string">"simple.queue"</span><span class="token punctuation">)</span> <span class="token comment">// 指定队列名称，并持久化</span>
+        <span class="token punctuation">.</span><span class="token function">deadLetterExchange</span><span class="token punctuation">(</span><span class="token string">"dl.direct"</span><span class="token punctuation">)</span> <span class="token comment">// 指定死信交换机</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 声明死信交换机 dl.direct</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">DirectExchange</span> <span class="token function">dlExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DirectExchange</span><span class="token punctuation">(</span><span class="token string">"dl.direct"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 声明存储死信的队列 dl.queue</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Queue</span> <span class="token function">dlQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token string">"dl.queue"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 将死信队列 与 死信交换机绑定</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Binding</span> <span class="token function">dlBinding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">BindingBuilder</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token function">dlQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span><span class="token function">dlExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">with</span><span class="token punctuation">(</span><span class="token string">"simple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-1-3-总结"><a href="#5-1-3-总结" class="headerlink" title="5.1.3 总结"></a>5.1.3 总结</h4><p>什么样的消息会成为死信？</p>
+<ul>
+<li>消息被消费者reject或者返回nack</li>
+<li>消息超时未消费</li>
+<li>队列满了</li>
+</ul>
+<p>死信交换机的使用场景是什么？</p>
+<ul>
+<li>如果队列绑定了死信交换机，死信会投递到死信交换机；</li>
+<li>可以利用死信交换机收集所有消费者处理失败的消息（死信），交由人工处理，进一步提高消息队列的可靠性。</li>
+</ul>
+<h3 id="5-2-TTL"><a href="#5-2-TTL" class="headerlink" title="5.2 TTL"></a>5.2 TTL</h3><p>一个队列中的消息如果超时未消费，则会变为死信，超时分为两种情况：</p>
+<ul>
+<li>消息所在的队列设置了超时时间</li>
+<li>消息本身设置了超时时间</li>
+</ul>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718182643311.png" class="">
+
+<h4 id="5-2-1-接收超时死信的死信交换机"><a href="#5-2-1-接收超时死信的死信交换机" class="headerlink" title="5.2.1 接收超时死信的死信交换机"></a>5.2.1 接收超时死信的死信交换机</h4><p>在consumer服务的SpringRabbitListener中，定义一个新的消费者，并且声明 死信交换机、死信队列：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>bindings <span class="token operator">=</span> <span class="token annotation punctuation">@QueueBinding</span><span class="token punctuation">(</span>
+    value <span class="token operator">=</span> <span class="token annotation punctuation">@Queue</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"dl.ttl.queue"</span><span class="token punctuation">,</span> durable <span class="token operator">=</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    exchange <span class="token operator">=</span> <span class="token annotation punctuation">@Exchange</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"dl.ttl.direct"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    key <span class="token operator">=</span> <span class="token string">"ttl"</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenDlQueue</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"接收到 dl.ttl.queue的延迟消息：{}"</span><span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-2-2-声明一个队列，并且指定TTL"><a href="#5-2-2-声明一个队列，并且指定TTL" class="headerlink" title="5.2.2 声明一个队列，并且指定TTL"></a>5.2.2 声明一个队列，并且指定TTL</h4><p>要给队列设置超时时间，需要在声明队列时配置x-message-ttl属性：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Queue</span> <span class="token function">ttlQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">QueueBuilder</span><span class="token punctuation">.</span><span class="token function">durable</span><span class="token punctuation">(</span><span class="token string">"ttl.queue"</span><span class="token punctuation">)</span> <span class="token comment">// 指定队列名称，并持久化</span>
+        <span class="token punctuation">.</span><span class="token function">ttl</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span> <span class="token comment">// 设置队列的超时时间，10秒</span>
+        <span class="token punctuation">.</span><span class="token function">deadLetterExchange</span><span class="token punctuation">(</span><span class="token string">"dl.ttl.direct"</span><span class="token punctuation">)</span> <span class="token comment">// 指定死信交换机</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意，这个队列设定了死信交换机为<code>dl.ttl.direct</code></p>
+<p>声明交换机，将ttl与交换机绑定：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">DirectExchange</span> <span class="token function">ttlExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DirectExchange</span><span class="token punctuation">(</span><span class="token string">"ttl.direct"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Binding</span> <span class="token function">ttlBinding</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">BindingBuilder</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token function">ttlQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span><span class="token function">ttlExchange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">with</span><span class="token punctuation">(</span><span class="token string">"ttl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>发送消息，但是不要指定TTL：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testTTLQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 创建消息</span>
+    <span class="token class-name">String</span> message <span class="token operator">=</span> <span class="token string">"hello, ttl queue"</span><span class="token punctuation">;</span>
+    <span class="token comment">// 消息ID，需要封装到CorrelationData中</span>
+    <span class="token class-name">CorrelationData</span> correlationData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CorrelationData</span><span class="token punctuation">(</span>UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 发送消息</span>
+    rabbitTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token string">"ttl.direct"</span><span class="token punctuation">,</span> <span class="token string">"ttl"</span><span class="token punctuation">,</span> message<span class="token punctuation">,</span> correlationData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 记录日志</span>
+    log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"发送消息成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>发送消息的日志：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718191657478.png" class="">
+
+<p>查看下接收消息的日志：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718191738706.png" class="">
+
+<p>因为队列的TTL值是10000ms，也就是10秒。可以看到消息发送与接收之间的时差刚好是10秒。</p>
+<h4 id="5-2-3-发送消息时，设定TTL"><a href="#5-2-3-发送消息时，设定TTL" class="headerlink" title="5.2.3 发送消息时，设定TTL"></a>5.2.3 发送消息时，设定TTL</h4><p>在发送消息时，也可以指定TTL：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testTTLMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 创建消息</span>
+    <span class="token class-name">Message</span> message <span class="token operator">=</span> <span class="token class-name">MessageBuilder</span>
+        <span class="token punctuation">.</span><span class="token function">withBody</span><span class="token punctuation">(</span><span class="token string">"hello, ttl message"</span><span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">setExpiration</span><span class="token punctuation">(</span><span class="token string">"5000"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 消息ID，需要封装到CorrelationData中</span>
+    <span class="token class-name">CorrelationData</span> correlationData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CorrelationData</span><span class="token punctuation">(</span>UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 发送消息</span>
+    rabbitTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token string">"ttl.direct"</span><span class="token punctuation">,</span> <span class="token string">"ttl"</span><span class="token punctuation">,</span> message<span class="token punctuation">,</span> correlationData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"发送消息成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查看发送消息日志：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718191939140.png" class="">
+
+<p>接收消息日志：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718192004662.png" class="">
+
+<p>这次，发送与接收的延迟只有5秒。说明当队列、消息都设置了TTL时，任意一个到期就会成为死信。</p>
+<h4 id="5-2-4-总结"><a href="#5-2-4-总结" class="headerlink" title="5.2.4 总结"></a>5.2.4 总结</h4><p>消息超时的两种方式是？</p>
+<ul>
+<li>给队列设置ttl属性，进入队列后超过ttl时间的消息变为死信</li>
+<li>给消息设置ttl属性，队列接收到消息超过ttl时间后变为死信</li>
+</ul>
+<p>如何实现发送一个消息20秒后消费者才收到消息？</p>
+<ul>
+<li>给消息的目标队列指定死信交换机</li>
+<li>将消费者监听的队列绑定到死信交换机</li>
+<li>发送消息时给消息设置超时时间为20秒</li>
+</ul>
+<h2 id="6-惰性队列"><a href="#6-惰性队列" class="headerlink" title="6. 惰性队列"></a>6. 惰性队列</h2><h3 id="6-1-消息堆积问题"><a href="#6-1-消息堆积问题" class="headerlink" title="6.1 消息堆积问题"></a>6.1 消息堆积问题</h3><p>当生产者发送消息的速度超过了消费者处理消息的速度，就会导致队列中的消息堆积，直到队列存储消息达到上限。之后发送的消息就会成为死信，可能会被丢弃，这就是消息堆积问题。</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718194040498.png" class="">
+
+<p>解决消息堆积有三种思路：</p>
+<ul>
+<li>增加更多消费者，提高消费速度。也就是我们之前说的work queue模式</li>
+<li>消费者开启线程池</li>
+<li>扩大队列容积，提高堆积上限</li>
+</ul>
+<p>要提升队列容积，把消息保存在内存中显然是不行的。</p>
+<h3 id="6-2-惰性队列"><a href="#6-2-惰性队列" class="headerlink" title="6.2 惰性队列"></a>6.2 惰性队列</h3><p>从RabbitMQ的3.6.0版本开始，就增加了Lazy Queues的概念，也就是惰性队列。惰性队列的特征如下：</p>
+<ul>
+<li>接收到消息后直接存入磁盘而非内存</li>
+<li>消费者要消费消息时才会从磁盘中读取并加载到内存</li>
+<li>支持数百万条的消息存储</li>
+</ul>
+<h4 id="6-2-1-基于命令行设置lazy-queue"><a href="#6-2-1-基于命令行设置lazy-queue" class="headerlink" title="6.2.1 基于命令行设置lazy-queue"></a>6.2.1 基于命令行设置lazy-queue</h4><p>而要设置一个队列为惰性队列，只需要在声明队列时，指定x-queue-mode属性为lazy即可。可以通过命令行将一个运行中的队列修改为惰性队列：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">rabbitmqctl set_policy Lazy "^lazy-queue$" '{"queue-mode":"lazy"}' --apply-to queues  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>命令解读：</p>
+<ul>
+<li><code>rabbitmqctl</code> ：RabbitMQ的命令行工具</li>
+<li><code>set_policy</code> ：添加一个策略</li>
+<li><code>Lazy</code> ：策略名称，可以自定义</li>
+<li><code>"^lazy-queue$"</code> ：用正则表达式匹配队列的名字</li>
+<li><code>'{"queue-mode":"lazy"}'</code> ：设置队列模式为lazy模式</li>
+<li><code>--apply-to queues  </code>：策略的作用对象，是所有的队列</li>
+</ul>
+<h4 id="6-2-2-基于-Bean声明lazy-queue"><a href="#6-2-2-基于-Bean声明lazy-queue" class="headerlink" title="6.2.2 基于@Bean声明lazy-queue"></a>6.2.2 基于@Bean声明lazy-queue</h4><img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718194522223.png" class="">
+
+<h4 id="6-2-3-基于-RabbitListener声明LazyQueue"><a href="#6-2-3-基于-RabbitListener声明LazyQueue" class="headerlink" title="6.2.3 基于@RabbitListener声明LazyQueue"></a>6.2.3 基于@RabbitListener声明LazyQueue</h4><img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718194539054.png" class="">
+
+<h3 id="6-3-总结"><a href="#6-3-总结" class="headerlink" title="6.3 总结"></a>6.3 总结</h3><p>消息堆积问题的解决方案？</p>
+<ul>
+<li>队列上绑定多个消费者，提高消费速度</li>
+<li>使用惰性队列，可以再mq中保存更多消息</li>
+</ul>
+<p>惰性队列的优点有哪些？</p>
+<ul>
+<li>基于磁盘存储，消息上限高</li>
+<li>没有间歇性的page-out，性能比较稳定</li>
+</ul>
+<p>惰性队列的缺点有哪些？</p>
+<ul>
+<li>基于磁盘存储，消息时效性会降低</li>
+<li>性能受限于磁盘的IO</li>
+</ul>
+<h2 id="7-MQ集群"><a href="#7-MQ集群" class="headerlink" title="7. MQ集群"></a>7. MQ集群</h2><h3 id="7-1-集群分类"><a href="#7-1-集群分类" class="headerlink" title="7.1 集群分类"></a>7.1 集群分类</h3><p>RabbitMQ的是基于Erlang语言编写，而Erlang又是一个面向并发的语言，天然支持集群模式。RabbitMQ的集群有两种模式：</p>
+<p>•<strong>普通集群</strong>：是一种分布式集群，将队列分散到集群的各个节点，从而提高整个集群的并发能力。</p>
+<p>•<strong>镜像集群</strong>：是一种主从集群，普通集群的基础上，添加了主从备份功能，提高集群的数据可用性。</p>
+<p>镜像集群虽然支持主从，但主从同步并不是强一致的，某些情况下可能有数据丢失的风险。因此在RabbitMQ的3.8版本以后，推出了新的功能：<strong>仲裁队列</strong>来代替镜像集群，底层采用Raft协议确保主从的数据一致性。</p>
+<h3 id="7-2-普通集群"><a href="#7-2-普通集群" class="headerlink" title="7.2 普通集群"></a>7.2 普通集群</h3><h4 id="7-2-1-集群结构和特征"><a href="#7-2-1-集群结构和特征" class="headerlink" title="7.2.1 集群结构和特征"></a>7.2.1 集群结构和特征</h4><p>普通集群，或者叫标准集群（classic cluster），具备下列特征：</p>
+<ul>
+<li>会在集群的各个节点间共享部分数据，包括：交换机、队列元信息。不包含队列中的消息。</li>
+<li>当访问集群某节点时，如果队列不在该节点，会从数据所在节点传递到当前节点并返回</li>
+<li>队列所在节点宕机，队列中的消息就会丢失</li>
+</ul>
+<p>结构如图：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718220843323.png" class="">
+
+<h4 id="7-2-2-部署"><a href="#7-2-2-部署" class="headerlink" title="7.2.2 部署"></a>7.2.2 部署</h4><p>我们先来看普通模式集群，我们的计划部署3节点的mq集群：</p>
+<table>
+<thead>
+<tr>
+<th>主机名</th>
+<th>控制台端口</th>
+<th>amqp通信端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mq1</td>
+<td>8081 —&gt; 15672</td>
+<td>8071 —&gt; 5672</td>
+</tr>
+<tr>
+<td>mq2</td>
+<td>8082 —&gt; 15672</td>
+<td>8072 —&gt; 5672</td>
+</tr>
+<tr>
+<td>mq3</td>
+<td>8083 —&gt; 15672</td>
+<td>8073  —&gt; 5672</td>
+</tr>
+</tbody></table>
+<p>集群中的节点标示默认都是：<code>rabbit@[hostname]</code>，因此以上三个节点的名称分别为：</p>
+<ul>
+<li><p>rabbit@mq1</p>
+</li>
+<li><p>rabbit@mq2</p>
+</li>
+<li><p>rabbit@mq3</p>
+</li>
+</ul>
+<ol>
+<li><p>获取cookie</p>
+<p>RabbitMQ底层依赖于Erlang，而Erlang虚拟机就是一个面向分布式的语言，默认就支持集群模式。集群模式中的每个RabbitMQ 节点使用 cookie 来确定它们是否被允许相互通信。</p>
+<p>要使两个节点能够通信，它们必须具有相同的共享秘密，称为<strong>Erlang cookie</strong>。cookie 只是一串最多 255 个字符的字母数字字符。</p>
+<p>每个集群节点必须具有<strong>相同的 cookie</strong>。实例之间也需要它来相互通信。</p>
+<p>我们先在之前启动的mq容器中获取一个cookie值，作为集群的cookie。执行下面的命令：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker exec -it mq cat /var/lib/rabbitmq/.erlang.cookie<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以看到cookie值如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">NQINSCVDRVHMTPJDUBWM<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来，停止并删除当前的mq容器，我们重新搭建集群。</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker rm -f mq<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717212345165.png" class="">
+</li>
+<li><p>准备集群配置</p>
+<p>在/tmp目录新建一个配置文件 rabbitmq.conf：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">cd /tmp
+# 创建文件
+touch rabbitmq.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>文件内容如下：</p>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx">loopback_users<span class="token punctuation">.</span>guest <span class="token operator">=</span> <span class="token boolean">false</span>
+listeners<span class="token punctuation">.</span>tcp<span class="token punctuation">.</span>default <span class="token operator">=</span> <span class="token number">5672</span>
+cluster_formation<span class="token punctuation">.</span>peer_discovery_backend <span class="token operator">=</span> rabbit_peer_discovery_classic_config
+cluster_formation<span class="token punctuation">.</span>classic_config<span class="token punctuation">.</span>nodes<span class="token punctuation">.</span><span class="token number">1</span> <span class="token operator">=</span> rabbit@mq1
+cluster_formation<span class="token punctuation">.</span>classic_config<span class="token punctuation">.</span>nodes<span class="token punctuation">.</span><span class="token number">2</span> <span class="token operator">=</span> rabbit@mq2
+cluster_formation<span class="token punctuation">.</span>classic_config<span class="token punctuation">.</span>nodes<span class="token punctuation">.</span><span class="token number">3</span> <span class="token operator">=</span> rabbit@mq3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再创建一个文件，记录cookie</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">cd /tmp
+# 创建cookie文件
+touch .erlang.cookie
+# 写入cookie
+echo "FXZMCVGLBIXZCDEMMVZQ" &gt; .erlang.cookie
+# 修改cookie文件的权限
+chmod 600 .erlang.cookie<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>准备三个目录,mq1、mq2、mq3：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">cd /tmp
+# 创建目录
+mkdir mq1 mq2 mq3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>然后拷贝rabbitmq.conf、cookie文件到mq1、mq2、mq3：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh"># 进入/tmp
+cd /tmp
+# 拷贝
+cp rabbitmq.conf mq1
+cp rabbitmq.conf mq2
+cp rabbitmq.conf mq3
+cp .erlang.cookie mq1
+cp .erlang.cookie mq2
+cp .erlang.cookie mq3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>启动集群</p>
+<p>创建一个网络：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker network create mq-net
+docker volume create <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>运行命令</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker run -d --net mq-net \
+-v ${PWD}/mq1/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf \
+-v ${PWD}/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie \
+-e RABBITMQ_DEFAULT_USER=itcast \
+-e RABBITMQ_DEFAULT_PASS=123321 \
+--name mq1 \
+--hostname mq1 \
+-p 8071:5672 \
+-p 8081:15672 \
+rabbitmq:3.8-management<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker run -d --net mq-net \
+-v ${PWD}/mq2/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf \
+-v ${PWD}/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie \
+-e RABBITMQ_DEFAULT_USER=itcast \
+-e RABBITMQ_DEFAULT_PASS=123321 \
+--name mq2 \
+--hostname mq2 \
+-p 8072:5672 \
+-p 8082:15672 \
+rabbitmq:3.8-management<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker run -d --net mq-net \
+-v ${PWD}/mq3/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf \
+-v ${PWD}/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie \
+-e RABBITMQ_DEFAULT_USER=itcast \
+-e RABBITMQ_DEFAULT_PASS=123321 \
+--name mq3 \
+--hostname mq3 \
+-p 8073:5672 \
+-p 8083:15672 \
+rabbitmq:3.8-management<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>测试</p>
+<p>在mq1这个节点上添加一个队列：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717222833196.png" class="">
+
+<p>如图，在mq2和mq3两个控制台也都能看到：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717223057902.png" class="">
+
+<ul>
+<li><p>数据共享测试</p>
+<p>点击这个队列，进入管理页面：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717223421750.png" class="">
+
+<p>然后利用控制台发送一条消息到这个队列：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717223320238.png" class="">
+
+<p>结果在mq2、mq3上都能看到这条消息：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717223603628.png" class="">
+</li>
+<li><p>可用性测试</p>
+<p>我们让其中一台节点mq1宕机：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker stop mq1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后登录mq2或mq3的控制台，发现simple.queue也不可用了：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717223800203.png" class="">
+
+<p>说明数据并没有拷贝到mq2和mq3。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="7-3-镜像模式"><a href="#7-3-镜像模式" class="headerlink" title="7.3 镜像模式"></a>7.3 镜像模式</h3><p>在刚刚的案例中，一旦创建队列的主机宕机，队列就会不可用。不具备高可用能力。如果要解决这个问题，必须使用官方提供的镜像集群方案。</p>
+<p>官方文档地址：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/ha.html">https://www.rabbitmq.com/ha.html</a></p>
+<h4 id="7-3-1-镜像模式的特征"><a href="#7-3-1-镜像模式的特征" class="headerlink" title="7.3.1 镜像模式的特征"></a>7.3.1 镜像模式的特征</h4><p>默认情况下，队列只保存在创建该队列的节点上。而镜像模式下，创建队列的节点被称为该队列的<strong>主节点</strong>，队列还会拷贝到集群中的其它节点，也叫做该队列的<strong>镜像</strong>节点。</p>
+<p>但是，不同队列可以在集群中的任意节点上创建，因此不同队列的主节点可以不同。甚至，<strong>一个队列的主节点可能是另一个队列的镜像节点</strong>。</p>
+<p>用户发送给队列的一切请求，例如发送消息、消息回执默认都会在主节点完成，如果是从节点接收到请求，也会路由到主节点去完成。<strong>镜像节点仅仅起到备份数据作用</strong>。</p>
+<p>当主节点接收到消费者的ACK时，所有镜像都会删除节点中的数据。</p>
+<p>总结如下：</p>
+<ul>
+<li>镜像队列结构是一主多从（从就是镜像）</li>
+<li>所有操作都是主节点完成，然后同步给镜像节点</li>
+<li>主宕机后，镜像节点会替代成新的主（如果在主从同步完成前，主就已经宕机，可能出现数据丢失）</li>
+<li>不具备负载均衡功能，因为所有操作都会有主节点完成（但是不同队列，其主节点可以不同，可以利用这个提高吞吐量）</li>
+</ul>
+<h4 id="7-3-2-镜像模式的配置"><a href="#7-3-2-镜像模式的配置" class="headerlink" title="7.3.2 镜像模式的配置"></a>7.3.2 镜像模式的配置</h4><p>镜像模式的配置有3种模式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">ha-mode</th>
+<th align="left">ha-params</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">准确模式exactly</td>
+<td align="left">队列的副本量count</td>
+<td align="left">集群中队列副本（主服务器和镜像服务器之和）的数量。count如果为1意味着单个副本：即队列主节点。count值为2表示2个副本：1个队列主和1个队列镜像。换句话说：count = 镜像数量 + 1。如果群集中的节点数少于count，则该队列将镜像到所有节点。如果有集群总数大于count+1，并且包含镜像的节点出现故障，则将在另一个节点上创建一个新的镜像。</td>
+</tr>
+<tr>
+<td align="left">all</td>
+<td align="left">(none)</td>
+<td align="left">队列在群集中的所有节点之间进行镜像。队列将镜像到任何新加入的节点。镜像到所有节点将对所有群集节点施加额外的压力，包括网络I / O，磁盘I / O和磁盘空间使用情况。推荐使用exactly，设置副本数为（N / 2 +1）。</td>
+</tr>
+<tr>
+<td align="left">nodes</td>
+<td align="left"><em>node names</em></td>
+<td align="left">指定队列创建到哪些节点，如果指定的节点全部不存在，则会出现异常。如果指定的节点在集群中存在，但是暂时不可用，会创建节点到当前客户端连接到的节点。</td>
+</tr>
+</tbody></table>
+<p>这里我们以rabbitmqctl命令作为案例来讲解配置语法。</p>
+<p>语法示例：</p>
+<ul>
+<li><p>exactly模式</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl set_policy ha-two "^two\." '{"ha-mode":"exactly","ha-params":2,"ha-sync-mode":"automatic"}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p><code>rabbitmqctl set_policy</code>：固定写法</p>
+</li>
+<li><p><code>ha-two</code>：策略名称，自定义</p>
+</li>
+<li><p><code>"^two\."</code>：匹配队列的正则表达式，符合命名规则的队列才生效，这里是任何以<code>two.</code>开头的队列名称</p>
+</li>
+<li><p><code>'{"ha-mode":"exactly","ha-params":2,"ha-sync-mode":"automatic"}'</code>: 策略内容</p>
+<ul>
+<li><code>"ha-mode":"exactly"</code>：策略模式，此处是exactly模式，指定副本数量</li>
+<li><code>"ha-params":2</code>：策略参数，这里是2，就是副本数量为2，1主1镜像</li>
+<li><code>"ha-sync-mode":"automatic"</code>：同步策略，默认是manual，即新加入的镜像节点不会同步旧的消息。如果设置为automatic，则新加入的镜像节点会把主节点中所有消息都同步，会带来额外的网络开销</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>all模式</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl set_policy ha-all "^all\." '{"ha-mode":"all"}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><p><code>ha-all</code>：策略名称，自定义</p>
+</li>
+<li><p><code>"^all\."</code>：匹配所有以<code>all.</code>开头的队列名</p>
+</li>
+<li><p><code>'{"ha-mode":"all"}'</code>：策略内容</p>
+<ul>
+<li><code>"ha-mode":"all"</code>：策略模式，此处是all模式，即所有节点都会称为镜像节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>nodes模式</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl set_policy ha-nodes "^nodes\." '{"ha-mode":"nodes","ha-params":["rabbit@nodeA", "rabbit@nodeB"]}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><code>rabbitmqctl set_policy</code>：固定写法</li>
+<li><code>ha-nodes</code>：策略名称，自定义</li>
+<li><code>"^nodes\."</code>：匹配队列的正则表达式，符合命名规则的队列才生效，这里是任何以<code>nodes.</code>开头的队列名称</li>
+<li><code>'{"ha-mode":"nodes","ha-params":["rabbit@nodeA", "rabbit@nodeB"]}'</code>: 策略内容<ul>
+<li><code>"ha-mode":"nodes"</code>：策略模式，此处是nodes模式</li>
+<li><code>"ha-params":["rabbit@mq1", "rabbit@mq2"]</code>：策略参数，这里指定副本所在节点名称</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-3-3-测试"><a href="#7-3-3-测试" class="headerlink" title="7.3.3 测试"></a>7.3.3 测试</h4><p>我们使用exactly模式的镜像，因为集群节点数量为3，因此镜像数量就设置为2.</p>
+<p>运行下面的命令：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker exec -it mq1 rabbitmqctl set_policy ha-two "^two\." '{"ha-mode":"exactly","ha-params":2,"ha-sync-mode":"automatic"}'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下面，我们创建一个新的队列：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717231751411.png" class="">
+
+<p>在任意一个mq控制台查看队列：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717231829505.png" class="">
+
+<h4 id="7-3-4-测试数据共享"><a href="#7-3-4-测试数据共享" class="headerlink" title="7.3.4 测试数据共享"></a>7.3.4 测试数据共享</h4><p>给two.queue发送一条消息：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717231958996.png" class="">
+
+<p>然后在mq1、mq2、mq3的任意控制台查看消息：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717232108584.png" class="">
+
+<h4 id="7-3-5-测试高可用"><a href="#7-3-5-测试高可用" class="headerlink" title="7.3.5 测试高可用"></a>7.3.5 测试高可用</h4><p>现在，我们让two.queue的主节点mq1宕机：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker stop mq1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查看集群状态：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717232257420.png" class="">
+
+<p>查看队列状态：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717232322646.png" class="">
+
+<p>发现依然是健康的！并且其主节点切换到了rabbit@mq2上</p>
+<h3 id="7-4-仲裁队列"><a href="#7-4-仲裁队列" class="headerlink" title="7.4 仲裁队列"></a>7.4 仲裁队列</h3><p>从RabbitMQ 3.8版本开始，引入了新的仲裁队列，他具备与镜像队里类似的功能，但使用更加方便。</p>
+<h4 id="7-4-1-添加仲裁队列"><a href="#7-4-1-添加仲裁队列" class="headerlink" title="7.4.1 添加仲裁队列"></a>7.4.1 添加仲裁队列</h4><p>在任意控制台添加一个队列，一定要选择队列类型为Quorum类型。</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717234329640.png" class="">
+
+<p>在任意控制台查看队列</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210717234426209.png" class="">
+
+<p>可以看到，仲裁队列的 + 2字样。代表这个队列有2个镜像节点。</p>
+<p>因为仲裁队列默认的镜像数为5。如果你的集群有7个节点，那么镜像数肯定是5；而我们集群只有3个节点，因此镜像数量就是3.</p>
+<h4 id="7-4-2-集群扩容"><a href="#7-4-2-集群扩容" class="headerlink" title="7.4.2 集群扩容"></a>7.4.2 集群扩容</h4><p>加入集群</p>
+<p>1）启动一个新的MQ容器：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker run -d --net mq-net \
+-v ${PWD}/.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie \
+-e RABBITMQ_DEFAULT_USER=itcast \
+-e RABBITMQ_DEFAULT_PASS=123321 \
+--name mq4 \
+--hostname mq5 \
+-p 8074:15672 \
+-p 8084:15672 \
+rabbitmq:3.8-management<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2）进入容器控制台：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker exec -it mq4 bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3）停止mq进程</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl stop_app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>4）重置RabbitMQ中的数据：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl reset<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>5）加入mq1：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl join_cluster rabbit@mq1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>6）再次启动mq进程</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmqctl start_app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718001909492.png" class="">
+
+<p>增加仲裁队列副本</p>
+<p>我们先查看下quorum.queue这个队列目前的副本情况，进入mq1容器：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">docker exec -it mq1 bash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行命令：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmq-queues quorum_status "quorum.queue"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>结果：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718002118357.png" class="">
+
+<p>现在，我们让mq4也加入进来：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmq-queues add_member "quorum.queue" "rabbit@mq4"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>结果：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718002253226.png" class="">
+
+<p>再次查看：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">rabbitmq-queues quorum_status "quorum.queue"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718002342603.png" class="">
+
+<p>查看控制台，发现quorum.queue的镜像数量也从原来的 +2 变成了 +3：</p>
+<img src="/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq/image-20210718002422365.png" class="">
+
+<h4 id="7-4-3-Java代码创建仲裁队列"><a href="#7-4-3-Java代码创建仲裁队列" class="headerlink" title="7.4.3 Java代码创建仲裁队列"></a>7.4.3 Java代码创建仲裁队列</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> <span class="token class-name">Queue</span> <span class="token function">quorumQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">QueueBuilder</span>
+        <span class="token punctuation">.</span><span class="token function">durable</span><span class="token punctuation">(</span><span class="token string">"quorum.queue"</span><span class="token punctuation">)</span> <span class="token comment">// 持久化</span>
+        <span class="token punctuation">.</span><span class="token function">quorum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 仲裁队列</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="7-4-4-SpringAMQP连接MQ集群"><a href="#7-4-4-SpringAMQP连接MQ集群" class="headerlink" title="7.4.4 SpringAMQP连接MQ集群"></a>7.4.4 SpringAMQP连接MQ集群</h4><p>注意，这里用address来代替host、port方式</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
+    <span class="token key atrule">addresses</span><span class="token punctuation">:</span> 192.168.150.105<span class="token punctuation">:</span><span class="token number">8071</span><span class="token punctuation">,</span> 192.168.150.105<span class="token punctuation">:</span><span class="token number">8072</span><span class="token punctuation">,</span> 192.168.150.105<span class="token punctuation">:</span><span class="token number">8073</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> itcast
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123321</span>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> /<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
                 
             </div>
             <hr/>
@@ -1874,7 +2551,7 @@ public class ConsumerTest {
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">139.6k</span>&nbsp;字
+                class="white-color">145.2k</span>&nbsp;字
             
             
             

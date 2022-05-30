@@ -1,3 +1,4 @@
+https://bowonqin.github.io/posts/vue-shi-zhan.html
 https://bowonqin.github.io/posts/springcloud-xiao-xi-zhong-jian-jian-rabbitmq.html
 https://bowonqin.github.io/posts/springcloud-wang-guan.html
 https://bowonqin.github.io/posts/xian-cheng-an-quan.html
